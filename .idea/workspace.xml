@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="added new methods to LibraryDAO, small update in toString methods in Author and Book classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/Author.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/LibraryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/LibraryDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,11 +74,25 @@
       <workItem from="1711128006346" duration="6221000" />
       <workItem from="1711149098773" duration="450000" />
       <workItem from="1711196121797" duration="864000" />
+      <workItem from="1711364615818" duration="2262000" />
     </task>
+    <task id="LOCAL-00001" summary="added new methods to LibraryDAO, small update in toString methods in Author and Book classes">
+      <option name="closed" value="true" />
+      <created>1711364767582</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711364767582</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added new methods to LibraryDAO, small update in toString methods in Author and Book classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new methods to LibraryDAO, small update in toString methods in Author and Book classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

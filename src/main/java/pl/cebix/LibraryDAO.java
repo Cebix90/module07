@@ -24,9 +24,9 @@ public class LibraryDAO {
     public void addBookToAuthor(String authorName, Book book) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Author author = getAuthorByName(authorName);
+        Author author = findAuthorByName(authorName);
 
-        if(author != null) {
+        if (author != null) {
             book.setAuthor(author);
             session.merge(book);
         } else {
@@ -76,6 +76,7 @@ public class LibraryDAO {
 
         return books;
     }
+
     public List<Object> getAllBooksAndAuthors() {
         List<Object> booksAndAuthors = new ArrayList<>();
 
@@ -86,12 +87,65 @@ public class LibraryDAO {
         booksAndAuthors.add(allAuthors);
 
         return booksAndAuthors;
-    };
+    }
+
+    public void updateBook(String title, String newTitle, String newGenre, Integer newNumberOfPages, Author newAuthor) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Book book = findBookByTitle(title);
+
+        if (book != null) {
+            if (newTitle != null) {
+                book.setTitle(newTitle);
+            }
+            if (newGenre != null) {
+                book.setGenre(newGenre);
+            }
+            if (newNumberOfPages != null) {
+                book.setNumberOfPages(newNumberOfPages);
+            }
+            if (newAuthor != null) {
+                book.setAuthor(newAuthor);
+            }
+
+            session.merge(book);
+            transaction.commit();
+        } else {
+            System.out.println("Book with title " + title + " was not found.");
+        }
+
+        session.close();
+    }
+
+    public void updateAuthor(String authorName, String newName, Integer age, String favouriteGenre) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Author author = findAuthorByName(authorName);
+
+        if (author != null) {
+            if (newName != null) {
+                author.setName(newName);
+            }
+            if (age != null) {
+                author.setAge(age);
+            }
+            if (favouriteGenre != null) {
+                author.setFavouriteGenre(favouriteGenre);
+            }
+
+            session.merge(author);
+            transaction.commit();
+        } else {
+            System.out.println("Author with name " + authorName + " was not found.");
+        }
+
+        session.close();
+    }
 
     public void deleteBook(String title) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Book book = getBookByTitle(title);
+        Book book = findBookByTitle(title);
         session.remove(book);
         transaction.commit();
         session.close();
@@ -100,13 +154,13 @@ public class LibraryDAO {
     public void deleteAuthor(String authorName) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Author author = getAuthorByName(authorName);
+        Author author = findAuthorByName(authorName);
         session.remove(author);
         transaction.commit();
         session.close();
     }
 
-    private Author getAuthorByName(String authorName) {
+    private Author findAuthorByName(String authorName) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Author> authorQuery = cb.createQuery(Author.class);
@@ -117,7 +171,7 @@ public class LibraryDAO {
         return author;
     }
 
-    private Book getBookByTitle(String bookTitle) {
+    private Book findBookByTitle(String bookTitle) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Book> bookQuery = cb.createQuery(Book.class);

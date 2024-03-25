@@ -52,7 +52,10 @@ public class Main {
         System.out.println();
         System.out.println(dao.getAllBooksAndAuthors());
 
+        dao.updateAuthor("Rowling", "JK Rowling", 46, null);
+        System.out.println(dao.getAllBooks());
+
         dao.deleteBook("Harry Potter");
-        dao.deleteAuthor("Rowling");
+        dao.deleteAuthor("JK Rowling");
     }
 }
