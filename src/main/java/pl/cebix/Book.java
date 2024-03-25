@@ -63,7 +63,7 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", genre='" + genre + '\'' +
                 ", numberOfPages=" + numberOfPages +
-                ", author=" + author +
+                ", author=" + author.getName() +
                 '}';
     }
 }

@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryDAO {
@@ -34,16 +35,6 @@ public class LibraryDAO {
 
         transaction.commit();
         session.close();
-    }
-
-    private Author getAuthorByName(String authorName) {
-        Session session = sessionFactory.openSession();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Author> authorQuery = cb.createQuery(Author.class);
-        Root<Author> root = authorQuery.from(Author.class);
-        authorQuery.select(root).where(cb.equal(root.get("name"), authorName));
-
-        return session.createQuery(authorQuery).getSingleResult();
     }
 
     public List<Book> getBooksOfAuthor(String authorName) {
@@ -85,14 +76,55 @@ public class LibraryDAO {
 
         return books;
     }
-//    public getAllBooksAndAuthors();
+    public List<Object> getAllBooksAndAuthors() {
+        List<Object> booksAndAuthors = new ArrayList<>();
+
+        List<Book> allBooks = getAllBooks();
+        booksAndAuthors.add(allBooks);
+
+        List<Author> allAuthors = getAllAuthors();
+        booksAndAuthors.add(allAuthors);
+
+        return booksAndAuthors;
+    };
 
     public void deleteBook(String title) {
-
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Book book = getBookByTitle(title);
+        session.remove(book);
+        transaction.commit();
+        session.close();
     }
 
     public void deleteAuthor(String authorName) {
-
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Author author = getAuthorByName(authorName);
+        session.remove(author);
+        transaction.commit();
+        session.close();
     }
 
+    private Author getAuthorByName(String authorName) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Author> authorQuery = cb.createQuery(Author.class);
+        Root<Author> root = authorQuery.from(Author.class);
+        authorQuery.select(root).where(cb.equal(root.get("name"), authorName));
+        Author author = session.createQuery(authorQuery).getSingleResult();
+        session.close();
+        return author;
+    }
+
+    private Book getBookByTitle(String bookTitle) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Book> bookQuery = cb.createQuery(Book.class);
+        Root<Book> root = bookQuery.from(Book.class);
+        bookQuery.select(root).where(cb.equal(root.get("title"), bookTitle));
+        Book book = session.createQuery(bookQuery).getSingleResult();
+        session.close();
+        return book;
+    }
 }

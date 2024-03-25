@@ -74,8 +74,7 @@ public class Author {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", favouriteGenre='" + favouriteGenre + '\'' +
-                ", books=" + books +
+                ", favouriteGenre='" + favouriteGenre +
                 '}';
     }
 }
