@@ -14,6 +14,16 @@ public class LibraryDAO {
     private final SessionFactory sessionFactory = AuthorSessionFactory.getAuthorSessionFactory();
 
     public void addAuthor(Author author) {
+        if (author == null) {
+            throw new IllegalArgumentException("Author cannot be null.");
+        }
+        if (author.getName() == null || author.getName().isEmpty()) {
+            throw new IllegalArgumentException("Author's name cannot be null or empty.");
+        }
+        if (author.getAge() == null || author.getAge() < 0 || author.getAge() > 120) {
+            throw new IllegalArgumentException("Author's age must be a positive number less than 120.");
+        }
+
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.merge(author);

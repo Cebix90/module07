@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="added new methods to LibraryDAO, small update in toString methods in Author and Book classes">
+    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="added updateBook and updateAuthor to LibraryDAO">
+      <change afterPath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/Author.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/LibraryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/LibraryDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/Main.java" afterDir="false" />
     </list>
@@ -41,6 +44,9 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Gradle.Build module07.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LibraryDAOTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LibraryDAOTest.testAddAuthor.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.module07 [:Main.main()].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -55,6 +61,62 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager" selected="Gradle.LibraryDAOTest.testAddAuthor">
+    <configuration name="LibraryDAOTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.cebix.LibraryDAOTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="LibraryDAOTest.testAddAuthor" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.cebix.LibraryDAOTest.testAddAuthor&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.LibraryDAOTest.testAddAuthor" />
+        <item itemvalue="Gradle.LibraryDAOTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -74,7 +136,11 @@
       <workItem from="1711128006346" duration="6221000" />
       <workItem from="1711149098773" duration="450000" />
       <workItem from="1711196121797" duration="864000" />
-      <workItem from="1711364615818" duration="2262000" />
+      <workItem from="1711364615818" duration="2624000" />
+      <workItem from="1711382758727" duration="2286000" />
+      <workItem from="1711402467646" duration="2064000" />
+      <workItem from="1711404543584" duration="4757000" />
+      <workItem from="1711440521431" duration="1979000" />
     </task>
     <task id="LOCAL-00001" summary="added new methods to LibraryDAO, small update in toString methods in Author and Book classes">
       <option name="closed" value="true" />
@@ -84,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711364767582</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added updateBook and updateAuthor to LibraryDAO">
+      <option name="closed" value="true" />
+      <created>1711367257580</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711367257580</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,15 +166,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added new methods to LibraryDAO, small update in toString methods in Author and Book classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new methods to LibraryDAO, small update in toString methods in Author and Book classes" />
+    <MESSAGE value="added updateBook and updateAuthor to LibraryDAO" />
+    <option name="LAST_COMMIT_MESSAGE" value="added updateBook and updateAuthor to LibraryDAO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="org.hibernate.HibernateException" package="org.hibernate" />
-          <option name="timeStamp" value="3" />
-        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/cebix/Main.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/cebix/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

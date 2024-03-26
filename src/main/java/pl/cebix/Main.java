@@ -12,6 +12,10 @@ public class Main {
         author.setFavouriteGenre("Fantasy");
 
         dao.addAuthor(author);
+        dao.addAuthor(new Author("Tolkien", 55, "Fantasy"));
+//        dao.addAuthor(new Author("Tolkien", 55, "Fantasy"));
+//        dao.addAuthor(new Author("Tolkien", 55, "Fantasy"));
+//        dao.addAuthor(new Author("Tolkien", 55, "Fantasy"));
 
         Author author2 = new Author();
         author2.setName("Rowling");

@@ -21,8 +21,7 @@ public class Author {
     public Author() {
     }
 
-    public Author(long id, String name, Integer age, String favouriteGenre) {
-        this.id = id;
+    public Author(String name, Integer age, String favouriteGenre) {
         this.name = name;
         this.age = age;
         this.favouriteGenre = favouriteGenre;
