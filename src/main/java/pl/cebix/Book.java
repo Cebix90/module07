@@ -16,6 +16,15 @@ public class Book {
     @ManyToOne
     private Author author;
 
+    public Book() {
+    }
+
+    public Book(String title, String genre, Integer numberOfPages) {
+        this.title = title;
+        this.genre = genre;
+        this.numberOfPages = numberOfPages;
+    }
+
     public String getTitle() {
         return title;
     }
