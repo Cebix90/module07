@@ -1,10 +1,13 @@
 package pl.cebix;
 
+import org.hibernate.SessionFactory;
+
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        LibraryDAO dao = new LibraryDAO();
+        SessionFactory sessionFactory = AuthorSessionFactory.getAuthorSessionFactory();
+        LibraryDAO dao = new LibraryDAO(sessionFactory);
 
         Author author = new Author();
         author.setName("Mateusz");

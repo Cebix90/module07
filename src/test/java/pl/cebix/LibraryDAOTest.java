@@ -3,52 +3,30 @@ package pl.cebix;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class LibraryDAOTest {
     @Mock
     private SessionFactory sessionFactory;
-
-    @Mock
-    private Session session;
-
-    @Mock
-    private Transaction transaction;
-
-//    @Test
-//    public void testAddAuthor() {
-//        LibraryDAO libraryDAO = new LibraryDAO();
-//        Author author = new Author();
-//        author.setId(1L);
-//        author.setName("Test Author");
-//        author.setAge(30);
-//        author.setFavouriteGenre("Fantasy");
-//
-//        when(sessionFactory.openSession()).thenReturn(session);
-//        when(session.beginTransaction()).thenReturn(transaction);
-//
-//        libraryDAO.addAuthor(author);
-//
-//        verify(sessionFactory, times(1)).openSession();
-//        verify(session, times(1)).close();
-//    }
+    @InjectMocks
+    private LibraryDAO libraryDAO;
 
     @Test
-    public void testAddAuthor() {
-        LibraryDAO libraryDAO = new LibraryDAO();
-        Author author = new Author();
-        author.setName("Test Author");
-        author.setAge(30);
-        author.setFavouriteGenre("Fantasy");
-
+    public void testAddAuthorWithValidData() {
+        Author author = new Author("John Doe", 30, "Thriller");
+        Session session = mock(Session.class);
+        Transaction transaction = mock(Transaction.class);
         when(sessionFactory.openSession()).thenReturn(session);
         when(session.beginTransaction()).thenReturn(transaction);
 
@@ -56,5 +34,26 @@ public class LibraryDAOTest {
 
         verify(session).merge(author);
         verify(transaction).commit();
+    }
+
+    @Test
+    public void testAddAuthorWithIncorrectName() {
+        Author authorWithEmptyName = new Author("", 30, "Thriller");
+        Session session = mock(Session.class);
+        Transaction transaction = mock(Transaction.class);
+        String expectedMessageIfAuthorIsEmpty = "Author's name cannot be null or empty.";
+
+        when(sessionFactory.openSession()).thenReturn(session);
+        when(session.beginTransaction()).thenReturn(transaction);
+
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        libraryDAO.addAuthor(authorWithEmptyName);
+
+        assertTrue(outContent.toString().contains(expectedMessageIfAuthorIsEmpty));
+
+        System.setOut(originalOut);
     }
 }

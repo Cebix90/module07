@@ -12,7 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryDAO {
-    private final SessionFactory sessionFactory = AuthorSessionFactory.getAuthorSessionFactory();
+    private final SessionFactory sessionFactory;
+
+    public LibraryDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     public void addAuthor(Author author) {
         try (Session session = sessionFactory.openSession()) {
