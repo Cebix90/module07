@@ -29,16 +29,19 @@ public class Main {
         book1.setTitle("Eragon");
         book1.setGenre("Fantasy");
         book1.setNumberOfPages(320);
+//        book1.setAuthor(author);
 
         Book book2 = new Book();
         book2.setTitle("Malowany Czlowiek");
         book2.setGenre("Fantasy");
         book2.setNumberOfPages(400);
+//        book2.setAuthor(author);
 
         Book book3 = new Book();
         book3.setTitle("Harry Potter");
         book3.setGenre("Fantasy");
         book3.setNumberOfPages(350);
+//        book3.setAuthor(author2);
 
         dao.addBookToAuthor("Mateusz", book1);
         dao.addBookToAuthor("Mateusz", book2);
@@ -56,10 +59,13 @@ public class Main {
         System.out.println();
         System.out.println(dao.getAllBooksAndAuthors());
 
+        Author author1 = null;
+        dao.addAuthor(author1);
+
         dao.updateAuthor("Rowling", "JK Rowling", 46, null);
         System.out.println(dao.getAllBooks());
 
-        dao.deleteBook("Harry Potter");
-        dao.deleteAuthor("JK Rowling");
+//        dao.deleteBook("Harry Potter");
+//        dao.deleteAuthor("JK Rowling");
     }
 }
