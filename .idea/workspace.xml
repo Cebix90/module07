@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="added updateBook and updateAuthor to LibraryDAO" />
+    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="Added constructor to the LibraryDAO class. Added two working tests to the LibraryDAOTest class." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,26 +35,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build module07.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LibraryDAOTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LibraryDAOTest.testAddAuthor.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.module07 [:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build module07.executor": "Run",
+    "Gradle.LibraryDAOTest.executor": "Run",
+    "Gradle.LibraryDAOTest.testAddAuthor.executor": "Run",
+    "Gradle.LibraryDAOTest.testAddAuthorWithIncorrectName.executor": "Debug",
+    "Gradle.module07 [:Main.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Gradle.LibraryDAOTest.testAddAuthor">
+}]]></component>
+  <component name="RunManager" selected="Gradle.LibraryDAOTest">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pl.cebix.Main" />
+      <module name="module07.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.cebix.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LibraryDAOTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -103,10 +117,36 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="LibraryDAOTest.testAddAuthorWithIncorrectName" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.cebix.LibraryDAOTest.testAddAuthorWithIncorrectName&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.LibraryDAOTest.testAddAuthor" />
         <item itemvalue="Gradle.LibraryDAOTest" />
+        <item itemvalue="Gradle.LibraryDAOTest.testAddAuthorWithIncorrectName" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.LibraryDAOTest.testAddAuthor" />
       </list>
     </recent_temporary>
   </component>
@@ -135,6 +175,7 @@
       <workItem from="1711404543584" duration="4757000" />
       <workItem from="1711440521431" duration="1979000" />
       <workItem from="1711468152050" duration="4000" />
+      <workItem from="1711477787835" duration="9797000" />
     </task>
     <task id="LOCAL-00001" summary="added new methods to LibraryDAO, small update in toString methods in Author and Book classes">
       <option name="closed" value="true" />
@@ -152,7 +193,31 @@
       <option name="project" value="LOCAL" />
       <updated>1711367257580</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="removed parameter author from constructor">
+      <option name="closed" value="true" />
+      <created>1711485135406</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711485135406</updated>
+    </task>
+    <task id="LOCAL-00004" summary="updated methods in Library DAO to handle exceptions and added validations for author and book">
+      <option name="closed" value="true" />
+      <created>1711485251174</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711485251174</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added constructor to the LibraryDAO class. Added two working tests to the LibraryDAOTest class.">
+      <option name="closed" value="true" />
+      <created>1711495803485</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711495803485</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,22 +226,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added new methods to LibraryDAO, small update in toString methods in Author and Book classes" />
     <MESSAGE value="added updateBook and updateAuthor to LibraryDAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="added updateBook and updateAuthor to LibraryDAO" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/cebix/Main.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/cebix/Main.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="removed parameter author from constructor" />
+    <MESSAGE value="updated methods in Library DAO to handle exceptions and added validations for author and book" />
+    <MESSAGE value="Added constructor to the LibraryDAO class. Added two working tests to the LibraryDAOTest class." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added constructor to the LibraryDAO class. Added two working tests to the LibraryDAOTest class." />
   </component>
 </project>

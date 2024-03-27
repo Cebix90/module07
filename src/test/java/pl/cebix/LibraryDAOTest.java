@@ -3,6 +3,7 @@ package pl.cebix;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,26 +23,72 @@ public class LibraryDAOTest {
     @InjectMocks
     private LibraryDAO libraryDAO;
 
-    @Test
-    public void testAddAuthorWithValidData() {
-        Author author = new Author("John Doe", 30, "Thriller");
-        Session session = mock(Session.class);
-        Transaction transaction = mock(Transaction.class);
-        when(sessionFactory.openSession()).thenReturn(session);
-        when(session.beginTransaction()).thenReturn(transaction);
+    @Nested
+    class TestAddAuthor {
+        @Test
+        public void testAddAuthorWithValidData() {
+            Author author = new Author("John Doe", 30, "Thriller");
+            Session session = mock(Session.class);
+            Transaction transaction = mock(Transaction.class);
+            when(sessionFactory.openSession()).thenReturn(session);
+            when(session.beginTransaction()).thenReturn(transaction);
 
-        libraryDAO.addAuthor(author);
+            libraryDAO.addAuthor(author);
 
-        verify(session).merge(author);
-        verify(transaction).commit();
+            verify(session).merge(author);
+            verify(transaction).commit();
+        }
+
+        @Test
+        public void testAddAuthorIfAuthorIsNull() {
+            String expectedMessageIfAuthorIsNull = "Author cannot be null.";
+            testValidateAuthorThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorIsNull);
+        }
+
+        @Test
+        public void testAddAuthorWithEmptyName() {
+            Author authorWithEmptyName = new Author("", 30, "Thriller");
+            String expectedMessageIfAuthorsNameIsEmpty = "Author's name cannot be null or empty.";
+
+            testValidateAuthorThrowsExceptionAndReturnAMessage(authorWithEmptyName, expectedMessageIfAuthorsNameIsEmpty);
+        }
+
+        @Test
+        public void testAddAuthorWithNullAsName() {
+            Author authorWithNullAsName = new Author(null, 30, "Thriller");
+            String expectedMessageIfAuthorsNameIsNull = "Author's name cannot be null or empty.";
+
+            testValidateAuthorThrowsExceptionAndReturnAMessage(authorWithNullAsName, expectedMessageIfAuthorsNameIsNull);
+        }
+
+        @Test
+        public void testAddAuthorWithAgeAsNull() {
+            Author authorWithIncorrectAge = new Author("John Doe", null, "Thriller");
+            String expectedMessageIfAuthorsAgeIsNull = "Author's age must be a positive number less than 120.";
+
+            testValidateAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsNull);
+        }
+
+        @Test
+        public void testAddAuthorWithMinusAge() {
+            Author authorWithIncorrectAge = new Author("John Doe", -1, "Thriller");
+            String expectedMessageIfAuthorsAgeIsNegativeNumber = "Author's age must be a positive number less than 120.";
+
+            testValidateAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsNegativeNumber);
+        }
+
+        @Test
+        public void testAddAuthorWithAgeAboveTheLimit() {
+            Author authorWithIncorrectAge = new Author("John Doe", 121, "Thriller");
+            String expectedMessageIfAuthorsAgeIsAboveTheLimit = "Author's age must be a positive number less than 120.";
+
+            testValidateAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
+        }
     }
 
-    @Test
-    public void testAddAuthorWithIncorrectName() {
-        Author authorWithEmptyName = new Author("", 30, "Thriller");
+    private void testValidateAuthorThrowsExceptionAndReturnAMessage(Author invalidAuthor, String expectedMessage) {
         Session session = mock(Session.class);
         Transaction transaction = mock(Transaction.class);
-        String expectedMessageIfAuthorIsEmpty = "Author's name cannot be null or empty.";
 
         when(sessionFactory.openSession()).thenReturn(session);
         when(session.beginTransaction()).thenReturn(transaction);
@@ -50,9 +97,9 @@ public class LibraryDAOTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        libraryDAO.addAuthor(authorWithEmptyName);
+        libraryDAO.addAuthor(invalidAuthor);
 
-        assertTrue(outContent.toString().contains(expectedMessageIfAuthorIsEmpty));
+        assertTrue(outContent.toString().contains(expectedMessage));
 
         System.setOut(originalOut);
     }
