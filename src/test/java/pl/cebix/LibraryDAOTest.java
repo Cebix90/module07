@@ -20,6 +20,10 @@ import static org.mockito.Mockito.*;
 public class LibraryDAOTest {
     @Mock
     private SessionFactory sessionFactory;
+    @Mock
+    private BookDAO bookDAO;
+    @Mock
+    private AuthorDAO authorDAO;
     @InjectMocks
     private LibraryDAO libraryDAO;
 
@@ -102,5 +106,47 @@ public class LibraryDAOTest {
 
             System.setOut(originalOut);
         }
+    }
+
+    @Nested
+    class TestAddBookToAuthor {
+        @Test
+        public void withValidData() {
+            Author author = mock(Author.class);
+            when(author.getName()).thenReturn("John Doe");
+
+            Book book = new Book("Title", "Genre", 200);
+
+            Session session = mock(Session.class);
+            Transaction transaction = mock(Transaction.class);
+
+            when(sessionFactory.openSession()).thenReturn(session);
+            when(session.beginTransaction()).thenReturn(transaction);
+            when(authorDAO.findAuthorByName("John Doe")).thenReturn(author);
+
+            libraryDAO.addBookToAuthor(author.getName(), book);
+
+            verify(session).merge(book);
+            verify(transaction).commit();
+        }
+
+
+//        private void testValidateBookThrowsExceptionAndReturnAMessage(Author invalidBook, String expectedMessage) {
+//            Session session = mock(Session.class);
+//            Transaction transaction = mock(Transaction.class);
+//
+//            when(sessionFactory.openSession()).thenReturn(session);
+//            when(session.beginTransaction()).thenReturn(transaction);
+//
+//            PrintStream originalOut = System.out;
+//            ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+//            System.setOut(new PrintStream(outContent));
+//
+//            libraryDAO.addAuthor(invalidAuthor);
+//
+//            assertTrue(outContent.toString().contains(expectedMessage));
+//
+//            System.setOut(originalOut);
+//        }
     }
 }

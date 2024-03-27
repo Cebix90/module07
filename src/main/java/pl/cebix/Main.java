@@ -7,7 +7,9 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         SessionFactory sessionFactory = AuthorSessionFactory.getAuthorSessionFactory();
-        LibraryDAO dao = new LibraryDAO(sessionFactory);
+        BookDAO bookDAO = new BookDAO(sessionFactory);
+        AuthorDAO authorDAO = new AuthorDAO(sessionFactory);
+        LibraryDAO dao = new LibraryDAO(sessionFactory, bookDAO, authorDAO);
 
         Author author = new Author();
         author.setName("Mateusz");

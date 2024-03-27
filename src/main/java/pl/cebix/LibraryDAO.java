@@ -13,9 +13,13 @@ import java.util.List;
 
 public class LibraryDAO {
     private final SessionFactory sessionFactory;
+    private final BookDAO bookDAO;
+    private final AuthorDAO authorDAO;
 
-    public LibraryDAO(SessionFactory sessionFactory) {
+    public LibraryDAO(SessionFactory sessionFactory, BookDAO bookDAO, AuthorDAO authorDAO) {
         this.sessionFactory = sessionFactory;
+        this.bookDAO = bookDAO;
+        this.authorDAO = authorDAO;
     }
 
     public void addAuthor(Author author) {
@@ -33,7 +37,7 @@ public class LibraryDAO {
     public void addBookToAuthor(String authorName, Book book) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            Author author = findAuthorByName(authorName);
+            Author author = authorDAO.findAuthorByName(authorName);
             book.setAuthor(author);
 
             if (author != null) {
@@ -101,7 +105,7 @@ public class LibraryDAO {
     public void updateBook(String actualTitle, String newTitle, String newGenre, Integer newNumberOfPages, Author newAuthor) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            Book book = findBookByTitle(actualTitle);
+            Book book = bookDAO.findBookByTitle(actualTitle);
 
             if (book != null) {
                 if (newTitle != null) {
@@ -130,7 +134,7 @@ public class LibraryDAO {
     public void updateAuthor(String actualAuthorName, String newName, Integer newAge, String newFavouriteGenre) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            Author author = findAuthorByName(actualAuthorName);
+            Author author = authorDAO.findAuthorByName(actualAuthorName);
 
             if (author != null) {
                 if (newName != null) {
@@ -156,7 +160,7 @@ public class LibraryDAO {
     public void deleteBook(String title) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Book book = findBookByTitle(title);
+        Book book = bookDAO.findBookByTitle(title);
         session.remove(book);
         transaction.commit();
         session.close();
@@ -165,41 +169,41 @@ public class LibraryDAO {
     public void deleteAuthor(String authorName) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Author author = findAuthorByName(authorName);
+        Author author = authorDAO.findAuthorByName(authorName);
         session.remove(author);
         transaction.commit();
         session.close();
     }
 
-    private Author findAuthorByName(String authorName) {
-        Author author = null;
-        try (Session session = sessionFactory.openSession()) {
-            CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<Author> authorQuery = cb.createQuery(Author.class);
-            Root<Author> root = authorQuery.from(Author.class);
-            authorQuery.select(root).where(cb.equal(root.get("name"), authorName));
-            author = session.createQuery(authorQuery).getSingleResult();
-        } catch (NoResultException e) {
-            System.out.println("Author with name " + authorName + " was not found.");
-        }
+//    private Author findAuthorByName(String authorName) {
+//        Author author = null;
+//        try (Session session = sessionFactory.openSession()) {
+//            CriteriaBuilder cb = session.getCriteriaBuilder();
+//            CriteriaQuery<Author> authorQuery = cb.createQuery(Author.class);
+//            Root<Author> root = authorQuery.from(Author.class);
+//            authorQuery.select(root).where(cb.equal(root.get("name"), authorName));
+//            author = session.createQuery(authorQuery).getSingleResult();
+//        } catch (NoResultException e) {
+//            System.out.println("Author with name " + authorName + " was not found.");
+//        }
+//
+//        return author;
+//    }
 
-        return author;
-    }
-
-    private Book findBookByTitle(String bookTitle) {
-        Book book = null;
-        try (Session session = sessionFactory.openSession()) {
-            CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<Book> bookQuery = cb.createQuery(Book.class);
-            Root<Book> root = bookQuery.from(Book.class);
-            bookQuery.select(root).where(cb.equal(root.get("title"), bookTitle));
-            book = session.createQuery(bookQuery).getSingleResult();
-        } catch (NoResultException e) {
-            System.out.println("Book with title " + bookTitle + " was not found.");
-        }
-
-        return book;
-    }
+//    private Book findBookByTitle(String bookTitle) {
+//        Book book = null;
+//        try (Session session = sessionFactory.openSession()) {
+//            CriteriaBuilder cb = session.getCriteriaBuilder();
+//            CriteriaQuery<Book> bookQuery = cb.createQuery(Book.class);
+//            Root<Book> root = bookQuery.from(Book.class);
+//            bookQuery.select(root).where(cb.equal(root.get("title"), bookTitle));
+//            book = session.createQuery(bookQuery).getSingleResult();
+//        } catch (NoResultException e) {
+//            System.out.println("Book with title " + bookTitle + " was not found.");
+//        }
+//
+//        return book;
+//    }
 
     private void validateAuthor(Author author) {
         if (author == null) {
