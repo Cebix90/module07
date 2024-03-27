@@ -42,7 +42,7 @@ public class LibraryDAOTest {
         @Test
         public void testAddAuthorIfAuthorIsNull() {
             String expectedMessageIfAuthorIsNull = "Author cannot be null.";
-            testValidateAuthorThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorIsNull);
+            testAddAuthorThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorIsNull);
         }
 
         @Test
@@ -50,7 +50,7 @@ public class LibraryDAOTest {
             Author authorWithEmptyName = new Author("", 30, "Thriller");
             String expectedMessageIfAuthorsNameIsEmpty = "Author's name cannot be null or empty.";
 
-            testValidateAuthorThrowsExceptionAndReturnAMessage(authorWithEmptyName, expectedMessageIfAuthorsNameIsEmpty);
+            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithEmptyName, expectedMessageIfAuthorsNameIsEmpty);
         }
 
         @Test
@@ -58,7 +58,7 @@ public class LibraryDAOTest {
             Author authorWithNullAsName = new Author(null, 30, "Thriller");
             String expectedMessageIfAuthorsNameIsNull = "Author's name cannot be null or empty.";
 
-            testValidateAuthorThrowsExceptionAndReturnAMessage(authorWithNullAsName, expectedMessageIfAuthorsNameIsNull);
+            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithNullAsName, expectedMessageIfAuthorsNameIsNull);
         }
 
         @Test
@@ -66,7 +66,7 @@ public class LibraryDAOTest {
             Author authorWithIncorrectAge = new Author("John Doe", null, "Thriller");
             String expectedMessageIfAuthorsAgeIsNull = "Author's age must be a positive number less than 120.";
 
-            testValidateAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsNull);
+            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsNull);
         }
 
         @Test
@@ -74,7 +74,7 @@ public class LibraryDAOTest {
             Author authorWithIncorrectAge = new Author("John Doe", -1, "Thriller");
             String expectedMessageIfAuthorsAgeIsNegativeNumber = "Author's age must be a positive number less than 120.";
 
-            testValidateAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsNegativeNumber);
+            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsNegativeNumber);
         }
 
         @Test
@@ -82,25 +82,25 @@ public class LibraryDAOTest {
             Author authorWithIncorrectAge = new Author("John Doe", 121, "Thriller");
             String expectedMessageIfAuthorsAgeIsAboveTheLimit = "Author's age must be a positive number less than 120.";
 
-            testValidateAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
+            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
         }
-    }
 
-    private void testValidateAuthorThrowsExceptionAndReturnAMessage(Author invalidAuthor, String expectedMessage) {
-        Session session = mock(Session.class);
-        Transaction transaction = mock(Transaction.class);
+        private void testAddAuthorThrowsExceptionAndReturnAMessage(Author invalidAuthor, String expectedMessage) {
+            Session session = mock(Session.class);
+            Transaction transaction = mock(Transaction.class);
 
-        when(sessionFactory.openSession()).thenReturn(session);
-        when(session.beginTransaction()).thenReturn(transaction);
+            when(sessionFactory.openSession()).thenReturn(session);
+            when(session.beginTransaction()).thenReturn(transaction);
 
-        PrintStream originalOut = System.out;
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+            PrintStream originalOut = System.out;
+            ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
 
-        libraryDAO.addAuthor(invalidAuthor);
+            libraryDAO.addAuthor(invalidAuthor);
 
-        assertTrue(outContent.toString().contains(expectedMessage));
+            assertTrue(outContent.toString().contains(expectedMessage));
 
-        System.setOut(originalOut);
+            System.setOut(originalOut);
+        }
     }
 }
