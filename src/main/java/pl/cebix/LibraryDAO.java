@@ -34,12 +34,11 @@ public class LibraryDAO {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             Author author = findAuthorByName(authorName);
-            book.setAuthor(author);
 
             if (author != null) {
-                validateBook(book);
-
                 book.setAuthor(author);
+
+                validateBook(book);
 
                 session.merge(book);
             } else {
@@ -171,7 +170,7 @@ public class LibraryDAO {
         session.close();
     }
 
-    private Author findAuthorByName(String authorName) {
+    public Author findAuthorByName(String authorName) {
         Author author = null;
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -186,7 +185,7 @@ public class LibraryDAO {
         return author;
     }
 
-    private Book findBookByTitle(String bookTitle) {
+    public Book findBookByTitle(String bookTitle) {
         Book book = null;
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -205,10 +204,18 @@ public class LibraryDAO {
         if (author == null) {
             throw new IllegalArgumentException("Author cannot be null.");
         }
-        if (author.getName() == null || author.getName().isEmpty()) {
+        validateAuthorsName(author.getName());
+        validateAuthorsAge(author.getAge());
+    }
+
+    private void validateAuthorsName(String authorName) {
+        if (authorName == null || authorName.isEmpty()) {
             throw new IllegalArgumentException("Author's name cannot be null or empty.");
         }
-        if (author.getAge() == null || author.getAge() < 0 || author.getAge() > 120) {
+    }
+
+    private void validateAuthorsAge(Integer authorAge) {
+        if (authorAge == null || authorAge < 0 || authorAge > 120) {
             throw new IllegalArgumentException("Author's age must be a positive number less than 120.");
         }
     }
@@ -217,16 +224,32 @@ public class LibraryDAO {
         if (book == null) {
             throw new IllegalArgumentException("Book cannot be null.");
         }
-        if (book.getTitle() == null || book.getTitle().isEmpty()) {
+        validateBooksTitle(book.getTitle());
+        validateGenre(book.getGenre());
+        validateBooksNumberOfPages(book.getNumberOfPages());
+        validateBooksAuthor(book.getAuthor());
+    }
+
+    private void validateBooksTitle(String title) {
+        if (title == null || title.isEmpty()) {
             throw new IllegalArgumentException("Book's title cannot be null or empty.");
         }
-        if (book.getGenre() == null || book.getGenre().isEmpty()) {
+    }
+
+    private void validateGenre(String genre) {
+        if (genre == null || genre.isEmpty()) {
             throw new IllegalArgumentException("Book's genre cannot be null or empty.");
         }
-        if (book.getNumberOfPages() == null || book.getNumberOfPages() < 1 || book.getNumberOfPages() > 3000) {
+    }
+
+    private void validateBooksNumberOfPages(Integer numberOfPages) {
+        if (numberOfPages == null || numberOfPages < 1 || numberOfPages > 3000) {
             throw new IllegalArgumentException("Book's number of pages must be a positive number between 1 and 3000.");
         }
-        if (book.getAuthor() == null) {
+    }
+
+    private void validateBooksAuthor(Author author) {
+        if (author == null) {
             throw new IllegalArgumentException("Book's author cannot be null.");
         }
     }

@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="Added constructor to the LibraryDAO class. Added two working tests to the LibraryDAOTest class." />
+    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/LibraryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/LibraryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +19,16 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -40,7 +54,15 @@
     "Gradle.Build module07.executor": "Run",
     "Gradle.LibraryDAOTest.executor": "Run",
     "Gradle.LibraryDAOTest.testAddAuthor.executor": "Run",
+    "Gradle.LibraryDAOTest.testAddAuthorIfAuthorIsNull.executor": "Run",
+    "Gradle.LibraryDAOTest.testAddAuthorWithAgeAsNull.executor": "Run",
     "Gradle.LibraryDAOTest.testAddAuthorWithIncorrectName.executor": "Debug",
+    "Gradle.LibraryDAOTest.testAddAuthorWithMinusAge.executor": "Run",
+    "Gradle.TestAddAuthor.executor": "Run",
+    "Gradle.TestAddBookToAuthor.executor": "Run",
+    "Gradle.TestAddBookToAuthor.testWithAuthorAsNull.executor": "Run",
+    "Gradle.TestAddBookToAuthor.testWithValidData.executor": "Run",
+    "Gradle.TestAddBookToAuthor.withValidData.executor": "Run",
     "Gradle.module07 [:Main.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -93,7 +115,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="LibraryDAOTest.testAddAuthor" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestAddBookToAuthor.testWithAuthorAsNull" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -106,7 +128,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest.testAddAuthor&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.testWithAuthorAsNull&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -117,7 +139,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="LibraryDAOTest.testAddAuthorWithIncorrectName" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestAddBookToAuthor.testWithValidData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -130,7 +152,31 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest.testAddAuthorWithIncorrectName&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.testWithValidData&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="TestAddBookToAuthor.withValidData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.withValidData&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -144,9 +190,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.LibraryDAOTest" />
-        <item itemvalue="Gradle.LibraryDAOTest.testAddAuthorWithIncorrectName" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.LibraryDAOTest.testAddAuthor" />
+        <item itemvalue="Gradle.TestAddBookToAuthor.testWithAuthorAsNull" />
+        <item itemvalue="Gradle.TestAddBookToAuthor.testWithValidData" />
+        <item itemvalue="Gradle.TestAddBookToAuthor.withValidData" />
       </list>
     </recent_temporary>
   </component>
@@ -176,6 +223,9 @@
       <workItem from="1711440521431" duration="1979000" />
       <workItem from="1711468152050" duration="4000" />
       <workItem from="1711477787835" duration="9797000" />
+      <workItem from="1711528486784" duration="12288000" />
+      <workItem from="1711566398537" duration="1812000" />
+      <workItem from="1711577425064" duration="1931000" />
     </task>
     <task id="LOCAL-00001" summary="added new methods to LibraryDAO, small update in toString methods in Author and Book classes">
       <option name="closed" value="true" />
@@ -217,7 +267,31 @@
       <option name="project" value="LOCAL" />
       <updated>1711495803485</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added all tests for addAuthor methods">
+      <option name="closed" value="true" />
+      <created>1711533332185</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711533332185</updated>
+    </task>
+    <task id="LOCAL-00007" summary="changed method's name to testAddAuthorThrowsExceptionAndReturnAMessage">
+      <option name="closed" value="true" />
+      <created>1711533979315</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711533979315</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added two separate classes to enable mocking of the findAuthorByName method">
+      <option name="closed" value="true" />
+      <created>1711543004229</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711543004230</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +303,12 @@
     <MESSAGE value="removed parameter author from constructor" />
     <MESSAGE value="updated methods in Library DAO to handle exceptions and added validations for author and book" />
     <MESSAGE value="Added constructor to the LibraryDAO class. Added two working tests to the LibraryDAOTest class." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added constructor to the LibraryDAO class. Added two working tests to the LibraryDAOTest class." />
+    <MESSAGE value="Added all tests for addAuthor methods" />
+    <MESSAGE value="changed method's name to testAddAuthorThrowsExceptionAndReturnAMessage" />
+    <MESSAGE value="Added two separate classes to enable mocking of the findAuthorByName method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added two separate classes to enable mocking of the findAuthorByName method" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/module07$LibraryDAOTest.ic" NAME="LibraryDAOTest Coverage Results" MODIFIED="1711583077327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
