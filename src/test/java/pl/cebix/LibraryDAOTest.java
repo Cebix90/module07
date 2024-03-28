@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.ByteArrayOutputStream;
@@ -20,6 +21,7 @@ import static org.mockito.Mockito.*;
 public class LibraryDAOTest {
     @Mock
     private SessionFactory sessionFactory;
+    @Spy
     @InjectMocks
     private LibraryDAO libraryDAO;
 
@@ -99,6 +101,50 @@ public class LibraryDAOTest {
             libraryDAO.addAuthor(invalidAuthor);
 
             assertTrue(outContent.toString().contains(expectedMessage));
+
+            System.setOut(originalOut);
+        }
+    }
+
+    @Nested
+    class TestAddBookToAuthor {
+        @Test
+        public void testWithValidData() {
+            Author author = new Author("John Doe", 25, "Fantasy");
+            Book book = new Book("Title", "Fantasy", 250);
+
+            Session session = mock(Session.class);
+            Transaction transaction = mock(Transaction.class);
+
+            when(sessionFactory.openSession()).thenReturn(session);
+            when(session.beginTransaction()).thenReturn(transaction);
+            doReturn(author).when(libraryDAO).findAuthorByName(author.getName());
+
+            libraryDAO.addBookToAuthor(author.getName(), book);
+
+            verify(session).merge(book);
+            verify(transaction).commit();
+        }
+
+        @Test
+        public void testWhenAuthorIsNotExist() {
+            String authorName = "John Doe";
+            Book book = new Book("Title", "Fantasy", 250);
+
+            Session session = mock(Session.class);
+            Transaction transaction = mock(Transaction.class);
+
+            when(sessionFactory.openSession()).thenReturn(session);
+            when(session.beginTransaction()).thenReturn(transaction);
+            doReturn(null).when(libraryDAO).findAuthorByName(authorName);
+
+            PrintStream originalOut = System.out;
+            ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+
+            libraryDAO.addBookToAuthor(authorName, book);
+
+            assertTrue(outContent.toString().contains("Author with name " + authorName + " is not exist."));
 
             System.setOut(originalOut);
         }
