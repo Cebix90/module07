@@ -36,7 +36,9 @@ public class LibraryDAO {
             Author author = findAuthorByName(authorName);
 
             if (author != null) {
-                book.setAuthor(author);
+                if (book != null) {
+                    book.setAuthor(author);
+                }
 
                 validateBook(book);
 
@@ -97,26 +99,15 @@ public class LibraryDAO {
         return booksAndAuthors;
     }
 
-    public void updateBook(String actualTitle, String newTitle, String newGenre, Integer newNumberOfPages, Author newAuthor) {
+    public void updateBooksTitle(String theTitle, String newTitle) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            Book book = findBookByTitle(actualTitle);
+            Book book = findBookByTitle(theTitle);
 
             if (book != null) {
-                if (newTitle != null) {
-                    book.setTitle(newTitle);
-                }
-                if (newGenre != null) {
-                    book.setGenre(newGenre);
-                }
-                if (newNumberOfPages != null) {
-                    book.setNumberOfPages(newNumberOfPages);
-                }
-                if (newAuthor != null) {
-                    book.setAuthor(newAuthor);
-                }
+                book.setTitle(newTitle);
 
-                validateBook(book);
+                validateBooksTitle(newTitle);
 
                 session.merge(book);
                 transaction.commit();
@@ -126,23 +117,103 @@ public class LibraryDAO {
         }
     }
 
-    public void updateAuthor(String actualAuthorName, String newName, Integer newAge, String newFavouriteGenre) {
+    public void updateBooksGenre(String theTitle, String newGenre) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            Author author = findAuthorByName(actualAuthorName);
+            Book book = findBookByTitle(theTitle);
+
+            if (book != null) {
+                book.setGenre(newGenre);
+
+                validateBooksGenre(newGenre);
+
+                session.merge(book);
+                transaction.commit();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateBooksNumberOfPages(String theTitle, Integer newNumberOfPages) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Book book = findBookByTitle(theTitle);
+
+            if (book != null) {
+                book.setNumberOfPages(newNumberOfPages);
+
+                validateBooksNumberOfPages(newNumberOfPages);
+
+                session.merge(book);
+                transaction.commit();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateBooksAuthor(String theTitle, Author newAuthor) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Book book = findBookByTitle(theTitle);
+
+            if (book != null) {
+                book.setAuthor(newAuthor);
+
+                validateBooksAuthor(newAuthor);
+
+                session.merge(book);
+                transaction.commit();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateAuthorsName(String theAuthorName, String newAuthorName) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Author author = findAuthorByName(theAuthorName);
 
             if (author != null) {
-                if (newName != null) {
-                    author.setName(newName);
-                }
-                if (newAge != null) {
-                    author.setAge(newAge);
-                }
-                if (newFavouriteGenre != null) {
-                    author.setFavouriteGenre(newFavouriteGenre);
-                }
+                author.setName(newAuthorName);
 
-                validateAuthor(author);
+                validateAuthorsName(newAuthorName);
+
+                session.merge(author);
+                transaction.commit();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateAuthorsAge(String theAuthorName, Integer newAge) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Author author = findAuthorByName(theAuthorName);
+
+            if (author != null) {
+                author.setAge(newAge);
+
+                validateAuthorsAge(newAge);
+
+                session.merge(author);
+                transaction.commit();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateAuthorsFavouriteGenre(String theAuthorName, String newFavouriteGenre) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Author author = findAuthorByName(theAuthorName);
+
+            if (author != null) {
+                author.setFavouriteGenre(newFavouriteGenre);
 
                 session.merge(author);
                 transaction.commit();
@@ -156,7 +227,11 @@ public class LibraryDAO {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Book book = findBookByTitle(title);
-        session.remove(book);
+
+        if (book != null) {
+            session.remove(book);
+        }
+
         transaction.commit();
         session.close();
     }
@@ -165,7 +240,11 @@ public class LibraryDAO {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Author author = findAuthorByName(authorName);
-        session.remove(author);
+
+        if (author != null) {
+            session.remove(author);
+        }
+
         transaction.commit();
         session.close();
     }
@@ -225,7 +304,7 @@ public class LibraryDAO {
             throw new IllegalArgumentException("Book cannot be null.");
         }
         validateBooksTitle(book.getTitle());
-        validateGenre(book.getGenre());
+        validateBooksGenre(book.getGenre());
         validateBooksNumberOfPages(book.getNumberOfPages());
         validateBooksAuthor(book.getAuthor());
     }
@@ -236,7 +315,7 @@ public class LibraryDAO {
         }
     }
 
-    private void validateGenre(String genre) {
+    private void validateBooksGenre(String genre) {
         if (genre == null || genre.isEmpty()) {
             throw new IllegalArgumentException("Book's genre cannot be null or empty.");
         }

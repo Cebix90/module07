@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="">
+    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="Added first two tests for addBookToAuthor method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/LibraryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/LibraryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +61,9 @@
     "Gradle.LibraryDAOTest.testAddAuthorWithMinusAge.executor": "Run",
     "Gradle.TestAddAuthor.executor": "Run",
     "Gradle.TestAddBookToAuthor.executor": "Run",
+    "Gradle.TestAddBookToAuthor.testIfBookIsNull.executor": "Run",
+    "Gradle.TestAddBookToAuthor.testIfBooksTitleIsEmpty.executor": "Run",
+    "Gradle.TestAddBookToAuthor.testIfBooksTitleIsNull.executor": "Run",
     "Gradle.TestAddBookToAuthor.testWithAuthorAsNull.executor": "Run",
     "Gradle.TestAddBookToAuthor.testWithValidData.executor": "Run",
     "Gradle.TestAddBookToAuthor.withValidData.executor": "Run",
@@ -77,7 +81,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.LibraryDAOTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pl.cebix.Main" />
       <module name="module07.main" />
@@ -115,7 +119,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="TestAddBookToAuthor.testWithAuthorAsNull" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestAddBookToAuthor" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -128,7 +132,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.testWithAuthorAsNull&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -139,7 +143,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="TestAddBookToAuthor.testWithValidData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestAddBookToAuthor.testIfBookIsNull" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -152,7 +156,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.testWithValidData&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.testIfBookIsNull&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -163,7 +167,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="TestAddBookToAuthor.withValidData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestAddBookToAuthor.testIfBooksTitleIsEmpty" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -176,7 +180,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.withValidData&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.testIfBooksTitleIsEmpty&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -189,11 +193,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.LibraryDAOTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.TestAddBookToAuthor.testWithAuthorAsNull" />
-        <item itemvalue="Gradle.TestAddBookToAuthor.testWithValidData" />
-        <item itemvalue="Gradle.TestAddBookToAuthor.withValidData" />
+        <item itemvalue="Gradle.LibraryDAOTest" />
+        <item itemvalue="Gradle.TestAddBookToAuthor" />
+        <item itemvalue="Gradle.TestAddBookToAuthor.testIfBookIsNull" />
+        <item itemvalue="Gradle.TestAddBookToAuthor.testIfBooksTitleIsEmpty" />
       </list>
     </recent_temporary>
   </component>
@@ -226,6 +230,8 @@
       <workItem from="1711528486784" duration="12288000" />
       <workItem from="1711566398537" duration="1812000" />
       <workItem from="1711577425064" duration="1931000" />
+      <workItem from="1711614674808" duration="707000" />
+      <workItem from="1711810005081" duration="5364000" />
     </task>
     <task id="LOCAL-00001" summary="added new methods to LibraryDAO, small update in toString methods in Author and Book classes">
       <option name="closed" value="true" />
@@ -291,7 +297,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711543004230</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Small fix in addBookToAuthor and division of validation methods into smaller ones">
+      <option name="closed" value="true" />
+      <created>1711584804884</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711584804884</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added first two tests for addBookToAuthor method">
+      <option name="closed" value="true" />
+      <created>1711584859710</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1711584859710</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +328,9 @@
     <MESSAGE value="Added all tests for addAuthor methods" />
     <MESSAGE value="changed method's name to testAddAuthorThrowsExceptionAndReturnAMessage" />
     <MESSAGE value="Added two separate classes to enable mocking of the findAuthorByName method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added two separate classes to enable mocking of the findAuthorByName method" />
+    <MESSAGE value="Small fix in addBookToAuthor and division of validation methods into smaller ones" />
+    <MESSAGE value="Added first two tests for addBookToAuthor method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added first two tests for addBookToAuthor method" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/module07$LibraryDAOTest.ic" NAME="LibraryDAOTest Coverage Results" MODIFIED="1711583077327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

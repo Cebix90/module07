@@ -15,7 +15,8 @@ public class Main {
         author.setFavouriteGenre("Fantasy");
 
         dao.addAuthor(author);
-        dao.addAuthor(new Author("Tolkien", 55, "Fantasy"));
+        Author author1 = new Author("Tolkien", 55, "Fantasy");
+        dao.addAuthor(author1);
 //        dao.addAuthor(new Author("Tolkien", 55, "Fantasy"));
 //        dao.addAuthor(new Author("Tolkien", 55, "Fantasy"));
 //        dao.addAuthor(new Author("Tolkien", 55, "Fantasy"));
@@ -62,11 +63,19 @@ public class Main {
         System.out.println();
         System.out.println(dao.getAllBooksAndAuthors());
 
-        Author author1 = null;
-        dao.addAuthor(author1);
+        Author author3 = null;
+        dao.addAuthor(author3);
 
-        dao.updateAuthor("Rowling", "JK Rowling", 46, null);
         System.out.println(dao.getAllBooks());
+
+        dao.updateBooksTitle("Harry Potter", "Harry Potter 2");
+        dao.updateBooksGenre("Harry Potter 2", "Fantasy 2");
+        dao.updateBooksNumberOfPages("Harry Potter 2", 300);
+        dao.updateBooksAuthor("Harry Potter 2", author1);
+
+        dao.updateAuthorsAge("Rowling", 50);
+        dao.updateAuthorsFavouriteGenre("Rowling", null);
+        dao.updateAuthorsName("Rowling", "JK Rowling");
 
 //        dao.deleteBook("Harry Potter");
 //        dao.deleteAuthor("JK Rowling");
