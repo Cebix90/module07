@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="Added first two tests for addBookToAuthor method">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/LibraryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/LibraryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/cebix/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/cebix/Main.java" afterDir="false" />
+    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="the updateAuthor and updateBook methods have been separated into more specific ones. Small fix in addBookToAuthor -&gt; book.set Author(author) line only occurs when book is not null">
       <change beforePath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -231,7 +228,7 @@
       <workItem from="1711566398537" duration="1812000" />
       <workItem from="1711577425064" duration="1931000" />
       <workItem from="1711614674808" duration="707000" />
-      <workItem from="1711810005081" duration="5364000" />
+      <workItem from="1711810005081" duration="5665000" />
     </task>
     <task id="LOCAL-00001" summary="added new methods to LibraryDAO, small update in toString methods in Author and Book classes">
       <option name="closed" value="true" />
@@ -313,7 +310,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711584859710</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="the updateAuthor and updateBook methods have been separated into more specific ones. Small fix in addBookToAuthor -&gt; book.set Author(author) line only occurs when book is not null">
+      <option name="closed" value="true" />
+      <created>1711815532053</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1711815532053</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +335,8 @@
     <MESSAGE value="Added two separate classes to enable mocking of the findAuthorByName method" />
     <MESSAGE value="Small fix in addBookToAuthor and division of validation methods into smaller ones" />
     <MESSAGE value="Added first two tests for addBookToAuthor method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added first two tests for addBookToAuthor method" />
+    <MESSAGE value="the updateAuthor and updateBook methods have been separated into more specific ones. Small fix in addBookToAuthor -&gt; book.set Author(author) line only occurs when book is not null" />
+    <option name="LAST_COMMIT_MESSAGE" value="the updateAuthor and updateBook methods have been separated into more specific ones. Small fix in addBookToAuthor -&gt; book.set Author(author) line only occurs when book is not null" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/module07$LibraryDAOTest.ic" NAME="LibraryDAOTest Coverage Results" MODIFIED="1711583077327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

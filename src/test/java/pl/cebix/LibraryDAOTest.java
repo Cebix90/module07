@@ -148,5 +148,89 @@ public class LibraryDAOTest {
 
             System.setOut(originalOut);
         }
+
+        @Test
+        public void testIfBookIsNull() {
+            String expectedMessageIfBookIsNull = "Book cannot be null.";
+
+            testAddBookToAuthorThrowsExceptionAndReturnAMessage(null, expectedMessageIfBookIsNull);
+        }
+
+        @Test
+        public void testIfBooksTitleIsNull() {
+            Book book = new Book(null, "Fantasy", 250);
+            String expectedMessageIfBooksTitleIsNull = "Book's title cannot be null or empty.";
+
+            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsNull);
+        }
+
+        @Test
+        public void testIfBooksTitleIsEmpty() {
+            Book book = new Book("", "Fantasy", 250);
+            String expectedMessageIfBooksTitleIsEmpty = "Book's title cannot be null or empty.";
+
+            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+        }
+
+        @Test
+        public void testIfBooksGenreIsNull() {
+            Book book = new Book("Title", null, 250);
+            String expectedMessageIfBooksTitleIsEmpty = "Book's genre cannot be null or empty.";
+
+            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+        }
+
+        @Test
+        public void testIfBooksGenreIsEmpty() {
+            Book book = new Book("Title", "", 250);
+            String expectedMessageIfBooksTitleIsEmpty = "Book's genre cannot be null or empty.";
+
+            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+        }
+
+        @Test
+        public void testIfBooksNumberOfPagesIsNull() {
+            Book book = new Book("Title", "Fantasy", null);
+            String expectedMessageIfBooksTitleIsEmpty = "Book's number of pages must be a positive number between 1 and 3000.";
+
+            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+        }
+
+        @Test
+        public void testIfBooksNumberOfPagesIsBelowTheLimit() {
+            Book book = new Book("Title", "Fantasy", 0);
+            String expectedMessageIfBooksTitleIsEmpty = "Book's number of pages must be a positive number between 1 and 3000.";
+
+            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+        }
+
+        @Test
+        public void testIfBooksNumberOfPagesIsAboveTheLimit() {
+            Book book = new Book("Title", "Fantasy", 3001);
+            String expectedMessageIfBooksTitleIsEmpty = "Book's number of pages must be a positive number between 1 and 3000.";
+
+            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+        }
+
+        private void testAddBookToAuthorThrowsExceptionAndReturnAMessage(Book invalidBook, String expectedMessage) {
+            Author author = new Author("John Doe", 25, "Fantasy");
+
+            Session session = mock(Session.class);
+            Transaction transaction = mock(Transaction.class);
+
+            when(sessionFactory.openSession()).thenReturn(session);
+            when(session.beginTransaction()).thenReturn(transaction);
+            doReturn(author).when(libraryDAO).findAuthorByName(author.getName());
+
+            PrintStream originalOut = System.out;
+            ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+
+            libraryDAO.addBookToAuthor(author.getName(), invalidBook);
+
+            assertTrue(outContent.toString().contains(expectedMessage));
+
+            System.setOut(originalOut);
+        }
     }
 }
