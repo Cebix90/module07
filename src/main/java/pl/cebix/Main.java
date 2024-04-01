@@ -68,14 +68,14 @@ public class Main {
 
         System.out.println(dao.getAllBooks());
 
-        dao.updateBooksTitle("Harry Potter", "Harry Potter 2");
-        dao.updateBooksGenre("Harry Potter 2", "Fantasy 2");
-        dao.updateBooksNumberOfPages("Harry Potter 2", 300);
-        dao.updateBooksAuthor("Harry Potter 2", author1);
+        dao.updateBookTitle("Harry Potter", "Harry Potter 2");
+        dao.updateBookGenre("Harry Potter 2", "Fantasy 2");
+        dao.updateBookNumberOfPages("Harry Potter 2", 300);
+        dao.updateBookAuthor("Harry Potter 2", author1);
 
-        dao.updateAuthorsAge("Rowling", 50);
-        dao.updateAuthorsFavouriteGenre("Rowling", null);
-        dao.updateAuthorsName("Rowling", "JK Rowling");
+        dao.updateAuthorAge("Rowling", 50);
+        dao.updateAuthorFavouriteGenre("Rowling", "");
+        dao.updateAuthorName("Rowling", "JK Rowling");
 
 //        dao.deleteBook("Harry Potter");
 //        dao.deleteAuthor("JK Rowling");

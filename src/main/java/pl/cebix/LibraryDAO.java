@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class LibraryDAO {
     private final SessionFactory sessionFactory;
@@ -99,125 +100,63 @@ public class LibraryDAO {
         return booksAndAuthors;
     }
 
-    public void updateBooksTitle(String theTitle, String newTitle) {
+    public void updateBookTitle(String theTitle, String newTitle) {
+        updateBookField(theTitle, book -> book.setTitle(newTitle), this::validateBookTitle, newTitle);
+    }
+
+    public void updateBookGenre(String theTitle, String newGenre) {
+        updateBookField(theTitle, book -> book.setGenre(newGenre), this::validateBookGenre, newGenre);
+    }
+
+    public void updateBookNumberOfPages(String theTitle, Integer newNumberOfPages) {
+        updateBookField(theTitle, book -> book.setNumberOfPages(newNumberOfPages), this::validateBookNumberOfPages, newNumberOfPages);
+    }
+
+    public void updateBookAuthor(String theTitle, Author newAuthor) {
+        updateBookField(theTitle, book -> book.setAuthor(newAuthor), this::validateBookAuthor, newAuthor);
+    }
+
+    private <T> void updateBookField(String theTitle, Consumer<Book> fieldUpdater, Consumer<T> validator, T value) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             Book book = findBookByTitle(theTitle);
 
             if (book != null) {
-                book.setTitle(newTitle);
-
-                validateBooksTitle(newTitle);
-
+                fieldUpdater.accept(book);
+                validator.accept(value);
                 session.merge(book);
-                transaction.commit();
             }
+
+            transaction.commit();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void updateBooksGenre(String theTitle, String newGenre) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            Book book = findBookByTitle(theTitle);
-
-            if (book != null) {
-                book.setGenre(newGenre);
-
-                validateBooksGenre(newGenre);
-
-                session.merge(book);
-                transaction.commit();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+    public void updateAuthorName(String theAuthorName, String newAuthorName) {
+        updateAuthorField(theAuthorName, author -> author.setName(newAuthorName), this::validateAuthorName, newAuthorName);
     }
 
-    public void updateBooksNumberOfPages(String theTitle, Integer newNumberOfPages) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            Book book = findBookByTitle(theTitle);
-
-            if (book != null) {
-                book.setNumberOfPages(newNumberOfPages);
-
-                validateBooksNumberOfPages(newNumberOfPages);
-
-                session.merge(book);
-                transaction.commit();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+    public void updateAuthorAge(String theAuthorName, Integer newAge) {
+        updateAuthorField(theAuthorName, author -> author.setAge(newAge), this::validateAuthorAge, newAge);
     }
 
-    public void updateBooksAuthor(String theTitle, Author newAuthor) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            Book book = findBookByTitle(theTitle);
-
-            if (book != null) {
-                book.setAuthor(newAuthor);
-
-                validateBooksAuthor(newAuthor);
-
-                session.merge(book);
-                transaction.commit();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+    public void updateAuthorFavouriteGenre(String theAuthorName, String newFavouriteGenre) {
+        updateAuthorField(theAuthorName, author -> author.setFavouriteGenre(newFavouriteGenre), this::validateAuthorFavouriteGenre, newFavouriteGenre);
     }
 
-    public void updateAuthorsName(String theAuthorName, String newAuthorName) {
+    private <T> void updateAuthorField(String theAuthorName, Consumer<Author> fieldUpdater, Consumer<T> validator, T value) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             Author author = findAuthorByName(theAuthorName);
 
             if (author != null) {
-                author.setName(newAuthorName);
-
-                validateAuthorsName(newAuthorName);
-
+                fieldUpdater.accept(author);
+                validator.accept(value);
                 session.merge(author);
-                transaction.commit();
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
-    public void updateAuthorsAge(String theAuthorName, Integer newAge) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            Author author = findAuthorByName(theAuthorName);
-
-            if (author != null) {
-                author.setAge(newAge);
-
-                validateAuthorsAge(newAge);
-
-                session.merge(author);
-                transaction.commit();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void updateAuthorsFavouriteGenre(String theAuthorName, String newFavouriteGenre) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            Author author = findAuthorByName(theAuthorName);
-
-            if (author != null) {
-                author.setFavouriteGenre(newFavouriteGenre);
-
-                session.merge(author);
-                transaction.commit();
-            }
+            transaction.commit();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -283,19 +222,26 @@ public class LibraryDAO {
         if (author == null) {
             throw new IllegalArgumentException("Author cannot be null.");
         }
-        validateAuthorsName(author.getName());
-        validateAuthorsAge(author.getAge());
+        validateAuthorName(author.getName());
+        validateAuthorAge(author.getAge());
+        validateAuthorFavouriteGenre(author.getFavouriteGenre());
     }
 
-    private void validateAuthorsName(String authorName) {
+    private void validateAuthorName(String authorName) {
         if (authorName == null || authorName.isEmpty()) {
             throw new IllegalArgumentException("Author's name cannot be null or empty.");
         }
     }
 
-    private void validateAuthorsAge(Integer authorAge) {
+    private void validateAuthorAge(Integer authorAge) {
         if (authorAge == null || authorAge < 0 || authorAge > 120) {
             throw new IllegalArgumentException("Author's age must be a positive number less than 120.");
+        }
+    }
+
+    private void validateAuthorFavouriteGenre(String favouriteGenre){
+        if(favouriteGenre == null) {
+            throw new IllegalArgumentException("Author's favourite genre cannot be null");
         }
     }
 
@@ -303,31 +249,31 @@ public class LibraryDAO {
         if (book == null) {
             throw new IllegalArgumentException("Book cannot be null.");
         }
-        validateBooksTitle(book.getTitle());
-        validateBooksGenre(book.getGenre());
-        validateBooksNumberOfPages(book.getNumberOfPages());
-        validateBooksAuthor(book.getAuthor());
+        validateBookTitle(book.getTitle());
+        validateBookGenre(book.getGenre());
+        validateBookNumberOfPages(book.getNumberOfPages());
+        validateBookAuthor(book.getAuthor());
     }
 
-    private void validateBooksTitle(String title) {
+    private void validateBookTitle(String title) {
         if (title == null || title.isEmpty()) {
             throw new IllegalArgumentException("Book's title cannot be null or empty.");
         }
     }
 
-    private void validateBooksGenre(String genre) {
+    private void validateBookGenre(String genre) {
         if (genre == null || genre.isEmpty()) {
             throw new IllegalArgumentException("Book's genre cannot be null or empty.");
         }
     }
 
-    private void validateBooksNumberOfPages(Integer numberOfPages) {
+    private void validateBookNumberOfPages(Integer numberOfPages) {
         if (numberOfPages == null || numberOfPages < 1 || numberOfPages > 3000) {
             throw new IllegalArgumentException("Book's number of pages must be a positive number between 1 and 3000.");
         }
     }
 
-    private void validateBooksAuthor(Author author) {
+    private void validateBookAuthor(Author author) {
         if (author == null) {
             throw new IllegalArgumentException("Book's author cannot be null.");
         }
