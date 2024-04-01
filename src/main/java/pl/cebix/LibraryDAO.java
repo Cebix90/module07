@@ -256,8 +256,8 @@ public class LibraryDAO {
     }
 
     private void validateAuthorFavouriteGenre(String favouriteGenre) {
-        if (favouriteGenre == null) {
-            throw new IllegalArgumentException("Author's favourite genre cannot be null.");
+        if (favouriteGenre == null || favouriteGenre.isEmpty()) {
+            throw new IllegalArgumentException("Author's favourite genre cannot be null or empty.");
         }
     }
 
