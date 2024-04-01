@@ -87,6 +87,22 @@ public class LibraryDAOTest {
             testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
         }
 
+        @Test
+        public void testAddAuthorWithNullAsGenre() {
+            Author authorWithIncorrectAge = new Author("John Doe", 30, null);
+            String expectedMessageIfAuthorsAgeIsAboveTheLimit = "Author's favourite genre cannot be null or empty.";
+
+            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
+        }
+
+        @Test
+        public void testAddAuthorWithEmptyGenre() {
+            Author authorWithIncorrectAge = new Author("John Doe", 30, "");
+            String expectedMessageIfAuthorsAgeIsAboveTheLimit = "Author's favourite genre cannot be null or empty.";
+
+            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
+        }
+
         private void testAddAuthorThrowsExceptionAndReturnAMessage(Author invalidAuthor, String expectedMessage) {
             Session session = mock(Session.class);
             Transaction transaction = mock(Transaction.class);
@@ -127,7 +143,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenAuthorIsNotExist() {
+        public void testWhenAuthorWasNotFound() {
             String authorName = "John Doe";
             Book book = new Book("Title", "Fantasy", 250);
 
@@ -144,7 +160,7 @@ public class LibraryDAOTest {
 
             libraryDAO.addBookToAuthor(authorName, book);
 
-            assertTrue(outContent.toString().contains("Author with name " + authorName + " is not exist."));
+            assertTrue(outContent.toString().contains("Author with name " + authorName + " was not found."));
 
             System.setOut(originalOut);
         }
@@ -404,7 +420,7 @@ public class LibraryDAOTest {
     }
 
     @Nested
-    class TestUpdateAuthor {
+    class TestUpdateBookAuthor {
         @Test
         public void testIfNewAuthorHasValidData() {
             Author newAuthor = new Author("New Author", 30, "Genre");
@@ -426,6 +442,7 @@ public class LibraryDAOTest {
         @Test
         public void testIfNewAuthorIsNull() {
             Book book = new Book("Title", "Fantasy", 250);
+
             Session session = mock(Session.class);
             Transaction transaction = mock(Transaction.class);
 
