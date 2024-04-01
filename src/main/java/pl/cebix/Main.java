@@ -77,6 +77,8 @@ public class Main {
         dao.updateAuthorFavouriteGenre("Rowling", "");
         dao.updateAuthorName("Rowling", "JK Rowling");
 
+        dao.updateAuthorAge(null, 50);
+
 //        dao.deleteBook("Harry Potter");
 //        dao.deleteAuthor("JK Rowling");
     }

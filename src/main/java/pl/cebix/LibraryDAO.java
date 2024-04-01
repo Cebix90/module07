@@ -45,11 +45,11 @@ public class LibraryDAO {
 
                 session.merge(book);
             } else {
-                System.out.println("Author with name " + authorName + " is not exist.");
+                System.out.println("Author with name " + authorName + " was not found.");
             }
 
             transaction.commit();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NoResultException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -125,10 +125,12 @@ public class LibraryDAO {
                 fieldUpdater.accept(book);
                 validator.accept(value);
                 session.merge(book);
+            } else {
+                System.out.println("Book with title " + theTitle + " was not found.");
             }
 
             transaction.commit();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NoResultException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -154,34 +156,40 @@ public class LibraryDAO {
                 fieldUpdater.accept(author);
                 validator.accept(value);
                 session.merge(author);
+            } else {
+                System.out.println("Author with name " + theAuthorName + " was not found.");
             }
 
             transaction.commit();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NoResultException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void deleteBook(String title) {
+    public void deleteBook(String theTitle) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Book book = findBookByTitle(title);
+        Book book = findBookByTitle(theTitle);
 
         if (book != null) {
             session.remove(book);
+        } else {
+            System.out.println("Book with title " + theTitle + " was not found.");
         }
 
         transaction.commit();
         session.close();
     }
 
-    public void deleteAuthor(String authorName) {
+    public void deleteAuthor(String theAuthorName) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Author author = findAuthorByName(authorName);
+        Author author = findAuthorByName(theAuthorName);
 
         if (author != null) {
             session.remove(author);
+        } else {
+            System.out.println("Author with name " + theAuthorName + " was not found.");
         }
 
         transaction.commit();
@@ -189,15 +197,19 @@ public class LibraryDAO {
     }
 
     public Author findAuthorByName(String authorName) {
-        Author author = null;
-        try (Session session = sessionFactory.openSession()) {
-            CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<Author> authorQuery = cb.createQuery(Author.class);
-            Root<Author> root = authorQuery.from(Author.class);
-            authorQuery.select(root).where(cb.equal(root.get("name"), authorName));
-            author = session.createQuery(authorQuery).getSingleResult();
-        } catch (NoResultException e) {
-            System.out.println("Author with name " + authorName + " was not found.");
+        Author author;
+        if(authorName != null){
+            try (Session session = sessionFactory.openSession()) {
+                CriteriaBuilder cb = session.getCriteriaBuilder();
+                CriteriaQuery<Author> authorQuery = cb.createQuery(Author.class);
+                Root<Author> root = authorQuery.from(Author.class);
+                authorQuery.select(root).where(cb.equal(root.get("name"), authorName));
+                author = session.createQuery(authorQuery).getSingleResult();
+            } catch (NoResultException e) {
+                throw new NoResultException("Author with name " + authorName + " was not found.");
+            }
+        } else {
+            throw new NoResultException("Author name cannot be null.");
         }
 
         return author;
@@ -205,14 +217,18 @@ public class LibraryDAO {
 
     public Book findBookByTitle(String bookTitle) {
         Book book = null;
-        try (Session session = sessionFactory.openSession()) {
-            CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<Book> bookQuery = cb.createQuery(Book.class);
-            Root<Book> root = bookQuery.from(Book.class);
-            bookQuery.select(root).where(cb.equal(root.get("title"), bookTitle));
-            book = session.createQuery(bookQuery).getSingleResult();
-        } catch (NoResultException e) {
-            System.out.println("Book with title " + bookTitle + " was not found.");
+        if(bookTitle != null) {
+            try (Session session = sessionFactory.openSession()) {
+                CriteriaBuilder cb = session.getCriteriaBuilder();
+                CriteriaQuery<Book> bookQuery = cb.createQuery(Book.class);
+                Root<Book> root = bookQuery.from(Book.class);
+                bookQuery.select(root).where(cb.equal(root.get("title"), bookTitle));
+                book = session.createQuery(bookQuery).getSingleResult();
+            } catch (NoResultException e) {
+                System.out.println("Book with title " + bookTitle + " was not found.");
+            }
+        } else {
+            throw new NoResultException("Book title cannot be null.");
         }
 
         return book;
@@ -239,8 +255,8 @@ public class LibraryDAO {
         }
     }
 
-    private void validateAuthorFavouriteGenre(String favouriteGenre){
-        if(favouriteGenre == null) {
+    private void validateAuthorFavouriteGenre(String favouriteGenre) {
+        if (favouriteGenre == null) {
             throw new IllegalArgumentException("Author's favourite genre cannot be null.");
         }
     }
