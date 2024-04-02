@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="the updateAuthor and updateBook methods have been separated into more specific ones. Small fix in addBookToAuthor -&gt; book.set Author(author) line only occurs when book is not null">
-      <change beforePath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" afterDir="false" />
+    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="added tests for author's favouriteGenre">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,13 +57,22 @@
     "Gradle.LibraryDAOTest.testAddAuthorWithIncorrectName.executor": "Debug",
     "Gradle.LibraryDAOTest.testAddAuthorWithMinusAge.executor": "Run",
     "Gradle.TestAddAuthor.executor": "Run",
+    "Gradle.TestAddAuthor.testAddAuthorWithEmptyGenre.executor": "Run",
+    "Gradle.TestAddAuthor.testAddAuthorWithNullAsGenre.executor": "Run",
     "Gradle.TestAddBookToAuthor.executor": "Run",
     "Gradle.TestAddBookToAuthor.testIfBookIsNull.executor": "Run",
     "Gradle.TestAddBookToAuthor.testIfBooksTitleIsEmpty.executor": "Run",
     "Gradle.TestAddBookToAuthor.testIfBooksTitleIsNull.executor": "Run",
+    "Gradle.TestAddBookToAuthor.testWhenAuthorIsNotExist.executor": "Run",
     "Gradle.TestAddBookToAuthor.testWithAuthorAsNull.executor": "Run",
     "Gradle.TestAddBookToAuthor.testWithValidData.executor": "Run",
     "Gradle.TestAddBookToAuthor.withValidData.executor": "Run",
+    "Gradle.TestUpdateAuthor.testIfNewAuthorHasValidData.executor": "Run",
+    "Gradle.TestUpdateAuthor.testIfNewAuthorIsNull.executor": "Run",
+    "Gradle.TestUpdateBookNumberOfPages.executor": "Run",
+    "Gradle.TestUpdateBookNumberOfPages.testWithValidData.executor": "Run",
+    "Gradle.TestUpdateBooksGenre.executor": "Run",
+    "Gradle.TestUpdateBooksTitle.executor": "Run",
     "Gradle.module07 [:Main.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -78,7 +87,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Gradle.LibraryDAOTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pl.cebix.Main" />
       <module name="module07.main" />
@@ -116,7 +125,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="TestAddBookToAuthor" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestAddAuthor.testAddAuthorWithEmptyGenre" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -129,7 +138,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddAuthor.testAddAuthorWithEmptyGenre&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -140,7 +149,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="TestAddBookToAuthor.testIfBookIsNull" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestAddAuthor.testAddAuthorWithNullAsGenre" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -153,7 +162,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.testIfBookIsNull&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddAuthor.testAddAuthorWithNullAsGenre&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -164,7 +173,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="TestAddBookToAuthor.testIfBooksTitleIsEmpty" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestAddBookToAuthor.testWhenAuthorIsNotExist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -177,7 +186,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.testIfBooksTitleIsEmpty&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.testWhenAuthorIsNotExist&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -190,11 +199,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.LibraryDAOTest" />
-        <item itemvalue="Gradle.TestAddBookToAuthor" />
-        <item itemvalue="Gradle.TestAddBookToAuthor.testIfBookIsNull" />
-        <item itemvalue="Gradle.TestAddBookToAuthor.testIfBooksTitleIsEmpty" />
+        <item itemvalue="Gradle.TestAddAuthor.testAddAuthorWithEmptyGenre" />
+        <item itemvalue="Gradle.TestAddAuthor.testAddAuthorWithNullAsGenre" />
+        <item itemvalue="Gradle.TestAddBookToAuthor.testWhenAuthorIsNotExist" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -228,7 +237,11 @@
       <workItem from="1711566398537" duration="1812000" />
       <workItem from="1711577425064" duration="1931000" />
       <workItem from="1711614674808" duration="707000" />
-      <workItem from="1711810005081" duration="5665000" />
+      <workItem from="1711810005081" duration="6346000" />
+      <workItem from="1711879781022" duration="5522000" />
+      <workItem from="1711921133910" duration="600000" />
+      <workItem from="1711967096571" duration="2074000" />
+      <workItem from="1712005816002" duration="5235000" />
     </task>
     <task id="LOCAL-00001" summary="added new methods to LibraryDAO, small update in toString methods in Author and Book classes">
       <option name="closed" value="true" />
@@ -318,7 +331,63 @@
       <option name="project" value="LOCAL" />
       <updated>1711815532053</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added missing tests for the addBookToAuthor method">
+      <option name="closed" value="true" />
+      <created>1711815723373</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1711815723373</updated>
+    </task>
+    <task id="LOCAL-00013" summary="added tests for updateBookTitle, updateBookGenre, updateBookNumberOfPages, updateBookAuthor">
+      <option name="closed" value="true" />
+      <created>1711892017632</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1711892017632</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Refactored author and book data update methods">
+      <option name="closed" value="true" />
+      <created>1711968197331</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1711968197331</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added method to validate the genre field for author">
+      <option name="closed" value="true" />
+      <created>1711969168417</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1711969168417</updated>
+    </task>
+    <task id="LOCAL-00016" summary="updated methods in case the book or author cannot be found by the findAuthorByName and findBookByTitle methods">
+      <option name="closed" value="true" />
+      <created>1712011940452</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1712011940452</updated>
+    </task>
+    <task id="LOCAL-00017" summary="added validation for author's empty favouriteGenre">
+      <option name="closed" value="true" />
+      <created>1712012300644</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1712012300644</updated>
+    </task>
+    <task id="LOCAL-00018" summary="added tests for author's favouriteGenre">
+      <option name="closed" value="true" />
+      <created>1712012333089</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1712012333089</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +405,25 @@
     <MESSAGE value="Small fix in addBookToAuthor and division of validation methods into smaller ones" />
     <MESSAGE value="Added first two tests for addBookToAuthor method" />
     <MESSAGE value="the updateAuthor and updateBook methods have been separated into more specific ones. Small fix in addBookToAuthor -&gt; book.set Author(author) line only occurs when book is not null" />
-    <option name="LAST_COMMIT_MESSAGE" value="the updateAuthor and updateBook methods have been separated into more specific ones. Small fix in addBookToAuthor -&gt; book.set Author(author) line only occurs when book is not null" />
+    <MESSAGE value="added missing tests for the addBookToAuthor method" />
+    <MESSAGE value="added tests for updateBookTitle, updateBookGenre, updateBookNumberOfPages, updateBookAuthor" />
+    <MESSAGE value="Refactored author and book data update methods" />
+    <MESSAGE value="added method to validate the genre field for author" />
+    <MESSAGE value="updated methods in case the book or author cannot be found by the findAuthorByName and findBookByTitle methods" />
+    <MESSAGE value="added validation for author's empty favouriteGenre" />
+    <MESSAGE value="added tests for author's favouriteGenre" />
+    <option name="LAST_COMMIT_MESSAGE" value="added tests for author's favouriteGenre" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pl/cebix/Main.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/module07$LibraryDAOTest.ic" NAME="LibraryDAOTest Coverage Results" MODIFIED="1711583077327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
