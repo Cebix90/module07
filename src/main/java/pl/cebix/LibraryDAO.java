@@ -161,29 +161,33 @@ public class LibraryDAO {
     }
 
     public void deleteBook(String theTitle) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        Book book = findBookByTitle(theTitle);
+        try(Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Book book = findBookByTitle(theTitle);
 
-        if (book != null) {
-            session.remove(book);
+            if (book != null) {
+                session.remove(book);
+            }
+
+            transaction.commit();
+        } catch (NoResultException e){
+            System.out.println(e.getMessage());
         }
-
-        transaction.commit();
-        session.close();
     }
 
     public void deleteAuthor(String theAuthorName) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        Author author = findAuthorByName(theAuthorName);
+        try(Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Author author = findAuthorByName(theAuthorName);
 
-        if (author != null) {
-            session.remove(author);
+            if (author != null) {
+                session.remove(author);
+            }
+
+            transaction.commit();
+        } catch (NoResultException e){
+            System.out.println(e.getMessage());
         }
-
-        transaction.commit();
-        session.close();
     }
 
     public Author findAuthorByName(String authorName) {
