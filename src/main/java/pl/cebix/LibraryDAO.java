@@ -44,8 +44,6 @@ public class LibraryDAO {
                 validateBook(book);
 
                 session.merge(book);
-            } else {
-                System.out.println("Author with name " + authorName + " was not found.");
             }
 
             transaction.commit();
@@ -125,8 +123,6 @@ public class LibraryDAO {
                 fieldUpdater.accept(book);
                 validator.accept(value);
                 session.merge(book);
-            } else {
-                System.out.println("Book with title " + theTitle + " was not found.");
             }
 
             transaction.commit();
@@ -156,8 +152,6 @@ public class LibraryDAO {
                 fieldUpdater.accept(author);
                 validator.accept(value);
                 session.merge(author);
-            } else {
-                System.out.println("Author with name " + theAuthorName + " was not found.");
             }
 
             transaction.commit();
@@ -173,8 +167,6 @@ public class LibraryDAO {
 
         if (book != null) {
             session.remove(book);
-        } else {
-            System.out.println("Book with title " + theTitle + " was not found.");
         }
 
         transaction.commit();
@@ -188,8 +180,6 @@ public class LibraryDAO {
 
         if (author != null) {
             session.remove(author);
-        } else {
-            System.out.println("Author with name " + theAuthorName + " was not found.");
         }
 
         transaction.commit();
@@ -208,8 +198,9 @@ public class LibraryDAO {
             } catch (NoResultException e) {
                 throw new NoResultException("Author with name " + authorName + " was not found.");
             }
-        } else {
-            throw new NoResultException("Author name cannot be null.");
+        }
+        else {
+            throw new NoResultException("The name of the author must be provided.");
         }
 
         return author;
@@ -217,7 +208,7 @@ public class LibraryDAO {
 
     public Book findBookByTitle(String bookTitle) {
         Book book = null;
-        if(bookTitle != null) {
+        if (bookTitle != null) {
             try (Session session = sessionFactory.openSession()) {
                 CriteriaBuilder cb = session.getCriteriaBuilder();
                 CriteriaQuery<Book> bookQuery = cb.createQuery(Book.class);
@@ -228,7 +219,7 @@ public class LibraryDAO {
                 System.out.println("Book with title " + bookTitle + " was not found.");
             }
         } else {
-            throw new NoResultException("Book title cannot be null.");
+            throw new NoResultException("The title of the book must be provided.");
         }
 
         return book;
