@@ -29,7 +29,7 @@ public class LibraryDAOTest {
     @Nested
     class TestAddAuthor {
         @Test
-        public void testIfAuthorHasValidData() {
+        public void checkIfAuthorHasBeenAddedSuccessfully() {
             Author author = new Author("John Doe", 30, "Thriller");
             Session session = mock(Session.class);
             Transaction transaction = mock(Transaction.class);
@@ -43,68 +43,68 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testIfAuthorIsNull() {
+        public void checkThrowingExceptionWhenAuthorIsNull() {
             String expectedMessageIfAuthorIsNull = "Author cannot be null.";
-            testAddAuthorThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorIsNull);
+            testIfInvalidAuthorThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorIsNull);
         }
 
         @Test
-        public void testIfNameIsEmpty() {
+        public void checkThrowingExceptionWhenAuthorNameIsEmpty() {
             Author authorWithEmptyName = new Author("", 30, "Thriller");
             String expectedMessageIfAuthorsNameIsEmpty = "Author's name cannot be null or empty.";
 
-            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithEmptyName, expectedMessageIfAuthorsNameIsEmpty);
+            testIfInvalidAuthorThrowsExceptionAndReturnAMessage(authorWithEmptyName, expectedMessageIfAuthorsNameIsEmpty);
         }
 
         @Test
-        public void testIfNameIsNull() {
+        public void checkThrowingExceptionWhenAuthorNameIsNull() {
             Author authorWithNullAsName = new Author(null, 30, "Thriller");
             String expectedMessageIfAuthorsNameIsNull = "Author's name cannot be null or empty.";
 
-            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithNullAsName, expectedMessageIfAuthorsNameIsNull);
+            testIfInvalidAuthorThrowsExceptionAndReturnAMessage(authorWithNullAsName, expectedMessageIfAuthorsNameIsNull);
         }
 
         @Test
-        public void testIfAgeIsNull() {
+        public void checkThrowingExceptionWhenAuthorAgeIsNull() {
             Author authorWithIncorrectAge = new Author("John Doe", null, "Thriller");
             String expectedMessageIfAuthorsAgeIsNull = "Author's age must be a positive number less than 120.";
 
-            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsNull);
+            testIfInvalidAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsNull);
         }
 
         @Test
-        public void testIfAgeIsBelowTheLimit() {
+        public void checkThrowingExceptionWhenAuthorAgeIsBelowTheLimit() {
             Author authorWithIncorrectAge = new Author("John Doe", -1, "Thriller");
             String expectedMessageIfAuthorsAgeIsNegativeNumber = "Author's age must be a positive number less than 120.";
 
-            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsNegativeNumber);
+            testIfInvalidAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsNegativeNumber);
         }
 
         @Test
-        public void testIfAgeAboveTheLimit() {
+        public void checkThrowingExceptionWhenAuthorAgeIsAboveTheLimit() {
             Author authorWithIncorrectAge = new Author("John Doe", 121, "Thriller");
             String expectedMessageIfAuthorsAgeIsAboveTheLimit = "Author's age must be a positive number less than 120.";
 
-            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
+            testIfInvalidAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
         }
 
         @Test
-        public void testIfFavouriteGenreIsNull() {
+        public void checkThrowingExceptionWhenAuthorFavouriteGenreIsNull() {
             Author authorWithIncorrectAge = new Author("John Doe", 30, null);
             String expectedMessageIfAuthorsAgeIsAboveTheLimit = "Author's favourite genre cannot be null or empty.";
 
-            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
+            testIfInvalidAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
         }
 
         @Test
-        public void testIfFavouriteGenreIsEmpty() {
+        public void checkThrowingExceptionWhenAuthorFavouriteGenreIsEmpty() {
             Author authorWithIncorrectAge = new Author("John Doe", 30, "");
             String expectedMessageIfAuthorsAgeIsAboveTheLimit = "Author's favourite genre cannot be null or empty.";
 
-            testAddAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
+            testIfInvalidAuthorThrowsExceptionAndReturnAMessage(authorWithIncorrectAge, expectedMessageIfAuthorsAgeIsAboveTheLimit);
         }
 
-        private void testAddAuthorThrowsExceptionAndReturnAMessage(Author invalidAuthor, String expectedMessage) {
+        private void testIfInvalidAuthorThrowsExceptionAndReturnAMessage(Author invalidAuthor, String expectedMessage) {
             Session session = mock(Session.class);
             Transaction transaction = mock(Transaction.class);
 
@@ -126,7 +126,7 @@ public class LibraryDAOTest {
     @Nested
     class TestAddBookToAuthor {
         @Test
-        public void testWithValidData() {
+        public void checkIfBookHasBeenAddedToAuthorSuccessfully() {
             Author author = new Author("John Doe", 25, "Fantasy");
             Book book = new Book("Title", "Fantasy", 250);
 
@@ -144,7 +144,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenAuthorWasNotFound() {
+        public void checkThrowingExceptionWhenAuthorWasNotFound() {
             String authorName = "John Doe";
             Book book = new Book("Title", "Fantasy", 250);
 
@@ -167,69 +167,69 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testIfBookIsNull() {
+        public void checkThrowingExceptionWhenBookIsNull() {
             String expectedMessageIfBookIsNull = "Book cannot be null.";
 
-            testAddBookToAuthorThrowsExceptionAndReturnAMessage(null, expectedMessageIfBookIsNull);
+            testIfInvalidBookThrowsExceptionAndReturnAMessage(null, expectedMessageIfBookIsNull);
         }
 
         @Test
-        public void testIfBooksTitleIsNull() {
+        public void checkThrowingExceptionWhenBookTitleIsNull() {
             Book book = new Book(null, "Fantasy", 250);
             String expectedMessageIfBooksTitleIsNull = "Book's title cannot be null or empty.";
 
-            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsNull);
+            testIfInvalidBookThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsNull);
         }
 
         @Test
-        public void testIfBooksTitleIsEmpty() {
+        public void checkThrowingExceptionWhenBookTitleIsEmpty() {
             Book book = new Book("", "Fantasy", 250);
             String expectedMessageIfBooksTitleIsEmpty = "Book's title cannot be null or empty.";
 
-            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+            testIfInvalidBookThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
         }
 
         @Test
-        public void testIfBooksGenreIsNull() {
+        public void checkThrowingExceptionWhenBookGenreIsNull() {
             Book book = new Book("Title", null, 250);
             String expectedMessageIfBooksTitleIsEmpty = "Book's genre cannot be null or empty.";
 
-            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+            testIfInvalidBookThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
         }
 
         @Test
-        public void testIfBooksGenreIsEmpty() {
+        public void checkThrowingExceptionWhenBookGenreIsEmpty() {
             Book book = new Book("Title", "", 250);
             String expectedMessageIfBooksTitleIsEmpty = "Book's genre cannot be null or empty.";
 
-            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+            testIfInvalidBookThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
         }
 
         @Test
-        public void testIfBooksNumberOfPagesIsNull() {
+        public void checkThrowingExceptionWhenBookNumberOfPagesIsNull() {
             Book book = new Book("Title", "Fantasy", null);
             String expectedMessageIfBooksTitleIsEmpty = "Book's number of pages must be a positive number between 1 and 3000.";
 
-            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+            testIfInvalidBookThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
         }
 
         @Test
-        public void testIfBooksNumberOfPagesIsBelowTheLimit() {
+        public void checkThrowingExceptionWhenBookNumberOfPagesIsBelowTheLimit() {
             Book book = new Book("Title", "Fantasy", 0);
             String expectedMessageIfBooksTitleIsEmpty = "Book's number of pages must be a positive number between 1 and 3000.";
 
-            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+            testIfInvalidBookThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
         }
 
         @Test
-        public void testIfBooksNumberOfPagesIsAboveTheLimit() {
+        public void checkThrowingExceptionWhenBookNumberOfPagesIsAboveTheLimit() {
             Book book = new Book("Title", "Fantasy", 3001);
             String expectedMessageIfBooksTitleIsEmpty = "Book's number of pages must be a positive number between 1 and 3000.";
 
-            testAddBookToAuthorThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
+            testIfInvalidBookThrowsExceptionAndReturnAMessage(book, expectedMessageIfBooksTitleIsEmpty);
         }
 
-        private void testAddBookToAuthorThrowsExceptionAndReturnAMessage(Book invalidBook, String expectedMessage) {
+        private void testIfInvalidBookThrowsExceptionAndReturnAMessage(Book invalidBook, String expectedMessage) {
             Author author = new Author("John Doe", 25, "Fantasy");
 
             Session session = mock(Session.class);
@@ -254,7 +254,7 @@ public class LibraryDAOTest {
     @Nested
     class TestUpdateBookTitle {
         @Test
-        public void testIfNewTitleHasValidData() {
+        public void checkIfTitleHasBeenUpdatedSuccessfully() {
             Book book = new Book("Title", "Fantasy", 250);
 
             Session session = mock(Session.class);
@@ -271,7 +271,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenBookWasNotFound() {
+        public void checkThrowingExceptionWhenBookWasNotFound() {
             Book book = new Book("Title", "Fantasy", 250);
 
             Session session = mock(Session.class);
@@ -293,20 +293,20 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testIfNewTitleIsNull() {
+        public void checkThrowingExceptionWhenNewTitleIsNull() {
             String expectedMessageIfBooksTitleIsNull = "Book's title cannot be null or empty.";
 
-            testUpdateBookTitleWhenThrowsExceptionAndReturnAMessage(null, expectedMessageIfBooksTitleIsNull);
+            testIfInvalidNewTitleThrowsExceptionAndReturnAMessage(null, expectedMessageIfBooksTitleIsNull);
         }
 
         @Test
-        public void testIfNewTitleIsEmpty() {
+        public void checkThrowingExceptionWhenNewTitleIsEmpty() {
             String expectedMessageIfBooksTitleIsEmpty = "Book's title cannot be null or empty.";
 
-            testUpdateBookTitleWhenThrowsExceptionAndReturnAMessage("", expectedMessageIfBooksTitleIsEmpty);
+            testIfInvalidNewTitleThrowsExceptionAndReturnAMessage("", expectedMessageIfBooksTitleIsEmpty);
         }
 
-        private void testUpdateBookTitleWhenThrowsExceptionAndReturnAMessage(String newTitle, String expectedMessage) {
+        private void testIfInvalidNewTitleThrowsExceptionAndReturnAMessage(String newTitle, String expectedMessage) {
             Book book = new Book("Title", "Fantasy", 250);
             Session session = mock(Session.class);
             Transaction transaction = mock(Transaction.class);
@@ -330,7 +330,7 @@ public class LibraryDAOTest {
     @Nested
     class TestUpdateBookGenre {
         @Test
-        public void testIfNewGenreHasValidData() {
+        public void checkIfGenreHasBeenUpdatedSuccessfully() {
             Book book = new Book("Title", "Fantasy", 250);
 
             Session session = mock(Session.class);
@@ -347,7 +347,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenBookWasNotFound() {
+        public void checkThrowingExceptionWhenBookWasNotFound() {
             Book book = new Book("Title", "Fantasy", 250);
 
             Session session = mock(Session.class);
@@ -369,20 +369,20 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testIfNewGenreIsNull() {
+        public void checkThrowingExceptionWhenNewGenreIsNull() {
             String expectedMessageIfBooksGenreIsNull = "Book's genre cannot be null or empty.";
 
-            testUpdateBookGenreWhenThrowsExceptionAndReturnAMessage(null, expectedMessageIfBooksGenreIsNull);
+            testIfInvalidNewGenreThrowsExceptionAndReturnAMessage(null, expectedMessageIfBooksGenreIsNull);
         }
 
         @Test
-        public void testIfNewGenreIsEmpty() {
+        public void checkThrowingExceptionWhenNewGenreIsEmpty() {
             String expectedMessageIfBooksGenreIsEmpty = "Book's genre cannot be null or empty.";
 
-            testUpdateBookGenreWhenThrowsExceptionAndReturnAMessage("", expectedMessageIfBooksGenreIsEmpty);
+            testIfInvalidNewGenreThrowsExceptionAndReturnAMessage("", expectedMessageIfBooksGenreIsEmpty);
         }
 
-        private void testUpdateBookGenreWhenThrowsExceptionAndReturnAMessage(String newGenre, String expectedMessage) {
+        private void testIfInvalidNewGenreThrowsExceptionAndReturnAMessage(String newGenre, String expectedMessage) {
             Book book = new Book("Title", "Fantasy", 250);
             Session session = mock(Session.class);
             Transaction transaction = mock(Transaction.class);
@@ -406,7 +406,7 @@ public class LibraryDAOTest {
     @Nested
     class TestUpdateBookNumberOfPages {
         @Test
-        public void testWithValidData() {
+        public void checkIfNumberOfPagesHasBeenUpdatedSuccessfully() {
             Book book = new Book("Title", "Fantasy", 250);
 
             Session session = mock(Session.class);
@@ -423,7 +423,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenBookWasNotFound() {
+        public void checkThrowingExceptionWhenBookWasNotFound() {
             Book book = new Book("Title", "Fantasy", 250);
 
             Session session = mock(Session.class);
@@ -445,27 +445,27 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testIfNewNumberOfPagesIsNull() {
+        public void checkThrowingExceptionWhenNewNumberOfPagesIsNull() {
             String expectedMessageIfBooksGenreIsNull = "Book's number of pages must be a positive number between 1 and 3000.";
 
-            testUpdateBookNumberOfPagesWhenThrowsExceptionAndReturnAMessage(null, expectedMessageIfBooksGenreIsNull);
+            testIfInvalidNewNumberOfPagesThrowsExceptionAndReturnAMessage(null, expectedMessageIfBooksGenreIsNull);
         }
 
         @Test
-        public void testIfNewNumberOfPagesIsBelowTheLimit() {
+        public void checkThrowingExceptionWhenNewNumberOfPagesIsBelowTheLimit() {
             String expectedMessageIfBooksGenreIsEmpty = "Book's number of pages must be a positive number between 1 and 3000.";
 
-            testUpdateBookNumberOfPagesWhenThrowsExceptionAndReturnAMessage(0, expectedMessageIfBooksGenreIsEmpty);
+            testIfInvalidNewNumberOfPagesThrowsExceptionAndReturnAMessage(0, expectedMessageIfBooksGenreIsEmpty);
         }
 
         @Test
-        public void testIfNewNumberOfPagesIsAboveTheLimit() {
+        public void checkThrowingExceptionWhenNewNumberOfPagesIsAboveTheLimit() {
             String expectedMessageIfBooksGenreIsEmpty = "Book's number of pages must be a positive number between 1 and 3000.";
 
-            testUpdateBookNumberOfPagesWhenThrowsExceptionAndReturnAMessage(3001, expectedMessageIfBooksGenreIsEmpty);
+            testIfInvalidNewNumberOfPagesThrowsExceptionAndReturnAMessage(3001, expectedMessageIfBooksGenreIsEmpty);
         }
 
-        private void testUpdateBookNumberOfPagesWhenThrowsExceptionAndReturnAMessage(Integer newNumberOfPages, String expectedMessage) {
+        private void testIfInvalidNewNumberOfPagesThrowsExceptionAndReturnAMessage(Integer newNumberOfPages, String expectedMessage) {
             Book book = new Book("Title", "Fantasy", 250);
             Session session = mock(Session.class);
             Transaction transaction = mock(Transaction.class);
@@ -489,7 +489,7 @@ public class LibraryDAOTest {
     @Nested
     class TestUpdateBookAuthor {
         @Test
-        public void testIfNewAuthorHasValidData() {
+        public void checkIfAuthorHasBeenUpdatedSuccessfully() {
             Author newAuthor = new Author("New Author", 30, "Genre");
             Book book = new Book("Title", "Fantasy", 250);
 
@@ -507,7 +507,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenBookWasNotFound() {
+        public void checkThrowingExceptionWhenBookWasNotFound() {
             Author newAuthor = mock(Author.class);
             Book book = new Book("Title", "Fantasy", 250);
 
@@ -530,7 +530,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testIfNewAuthorIsNull() {
+        public void checkThrowingExceptionWhenNewAuthorIsNull() {
             Book book = new Book("Title", "Fantasy", 250);
 
             Session session = mock(Session.class);
@@ -555,7 +555,7 @@ public class LibraryDAOTest {
     @Nested
     class TestUpdateAuthorName {
         @Test
-        public void testIfNewAuthorNameHasValidData() {
+        public void checkIfNameHasBeenUpdatedSuccessfully() {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -572,7 +572,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenAuthorWasNotFound() {
+        public void checkThrowingExceptionWhenAuthorWasNotFound() {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -594,20 +594,20 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testIfNewNameIsNull() {
+        public void checkThrowingExceptionWhenNewNameIsNull() {
             String expectedMessageIfAuthorTitleIsNull = "Author's name cannot be null or empty.";
 
-            testUpdateAuthorNameWhenThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorTitleIsNull);
+            testIfInvalidNewNameThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorTitleIsNull);
         }
 
         @Test
-        public void testIfNewNameIsEmpty() {
+        public void checkThrowingExceptionWhenNewNameIsEmpty() {
             String expectedMessageIfAuthorTitleIsEmpty = "Author's name cannot be null or empty.";
 
-            testUpdateAuthorNameWhenThrowsExceptionAndReturnAMessage("", expectedMessageIfAuthorTitleIsEmpty);
+            testIfInvalidNewNameThrowsExceptionAndReturnAMessage("", expectedMessageIfAuthorTitleIsEmpty);
         }
 
-        private void testUpdateAuthorNameWhenThrowsExceptionAndReturnAMessage(String newName, String expectedMessage) {
+        private void testIfInvalidNewNameThrowsExceptionAndReturnAMessage(String newName, String expectedMessage) {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -632,7 +632,7 @@ public class LibraryDAOTest {
     @Nested
     class TestUpdateAuthorAge {
         @Test
-        public void testIfNewAuthorAgeHasValidData() {
+        public void checkIfAgeHasBeenUpdatedSuccessfully() {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -649,7 +649,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenAuthorWasNotFound() {
+        public void checkThrowingExceptionWhenAuthorWasNotFound() {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -671,27 +671,27 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testIfNewAgeIsNull() {
+        public void checkThrowingExceptionWhenNewAgeIsNull() {
             String expectedMessageIfAuthorAgeIsNull = "Author's age must be a positive number less than 120.";
 
-            testUpdateAuthorAgeWhenThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorAgeIsNull);
+            testIfInvalidNewAgeThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorAgeIsNull);
         }
 
         @Test
-        public void testIfNewAgeIsBelowTheLimit() {
+        public void checkThrowingExceptionWhenNewAgeIsBelowTheLimit() {
             String expectedMessageIfAuthorAgeIsBelowTheLimit = "Author's age must be a positive number less than 120.";
 
-            testUpdateAuthorAgeWhenThrowsExceptionAndReturnAMessage(-1, expectedMessageIfAuthorAgeIsBelowTheLimit);
+            testIfInvalidNewAgeThrowsExceptionAndReturnAMessage(-1, expectedMessageIfAuthorAgeIsBelowTheLimit);
         }
 
         @Test
-        public void testIfNewAgeIsAboveTheLimit() {
+        public void checkThrowingExceptionWhenNewAgeIsAboveTheLimit() {
             String expectedMessageIfAuthorAgeIsAboveTheLimit = "Author's age must be a positive number less than 120.";
 
-            testUpdateAuthorAgeWhenThrowsExceptionAndReturnAMessage(121, expectedMessageIfAuthorAgeIsAboveTheLimit);
+            testIfInvalidNewAgeThrowsExceptionAndReturnAMessage(121, expectedMessageIfAuthorAgeIsAboveTheLimit);
         }
 
-        private void testUpdateAuthorAgeWhenThrowsExceptionAndReturnAMessage(Integer newAge, String expectedMessage) {
+        private void testIfInvalidNewAgeThrowsExceptionAndReturnAMessage(Integer newAge, String expectedMessage) {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -716,7 +716,7 @@ public class LibraryDAOTest {
     @Nested
     class TestUpdateAuthorFavouriteGenre {
         @Test
-        public void testIfNewAuthorNameHasValidData() {
+        public void checkIfFavouriteGenreHasBeenUpdatedSuccessfully() {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -733,7 +733,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenAuthorWasNotFound() {
+        public void checkThrowingExceptionWhenAuthorWasNotFound() {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -755,20 +755,20 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testIfNewFavouriteGenreIsNull() {
+        public void checkThrowingExceptionWhenNewFavouriteGenreIsNull() {
             String expectedMessageIfAuthorFavouriteGenreIsNull = "Author's favourite genre cannot be null or empty.";
 
-            testUpdateAuthorFavouriteGenreWhenThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorFavouriteGenreIsNull);
+            testIfInvalidNewFavouriteGenreThrowsExceptionAndReturnAMessage(null, expectedMessageIfAuthorFavouriteGenreIsNull);
         }
 
         @Test
-        public void testIfNewFavouriteGenreIsEmpty() {
+        public void checkThrowingExceptionWhenNewFavouriteGenreIsEmpty() {
             String expectedMessageIfAuthorFavouriteGenreIsEmpty = "Author's favourite genre cannot be null or empty.";
 
-            testUpdateAuthorFavouriteGenreWhenThrowsExceptionAndReturnAMessage("", expectedMessageIfAuthorFavouriteGenreIsEmpty);
+            testIfInvalidNewFavouriteGenreThrowsExceptionAndReturnAMessage("", expectedMessageIfAuthorFavouriteGenreIsEmpty);
         }
 
-        private void testUpdateAuthorFavouriteGenreWhenThrowsExceptionAndReturnAMessage(String newFavouriteGenre, String expectedMessage) {
+        private void testIfInvalidNewFavouriteGenreThrowsExceptionAndReturnAMessage(String newFavouriteGenre, String expectedMessage) {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -793,7 +793,7 @@ public class LibraryDAOTest {
     @Nested
     class TestDeleteBook {
         @Test
-        public void testWhenBookWasFound() {
+        public void checkIfBookHasBeenDeletedSuccessfully() {
             Book book = new Book("Title", "Fantasy", 250);
 
             Session session = mock(Session.class);
@@ -810,7 +810,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenBookWasNotFound() {
+        public void checkThrowingExceptionWhenBookWasNotFound() {
             Book book = new Book("Title", "Fantasy", 250);
 
             Session session = mock(Session.class);
@@ -835,7 +835,7 @@ public class LibraryDAOTest {
     @Nested
     class TestDeleteAuthor {
         @Test
-        public void testWhenAuthorWasFound() {
+        public void checkIfAuthorHasBeenDeletedSuccessfully() {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -852,7 +852,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenAuthorWasNotFound() {
+        public void checkThrowingExceptionWhenAuthorWasNotFound() {
             Author author = new Author("Name", 44, "Favourite Genre");
 
             Session session = mock(Session.class);
@@ -874,7 +874,7 @@ public class LibraryDAOTest {
         }
 
         @Test
-        public void testWhenAuthorNameWasNull() {
+        public void checkThrowingExceptionWhenAuthorNameIsNull() {
             Session session = mock(Session.class);
             Transaction transaction = mock(Transaction.class);
 

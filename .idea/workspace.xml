@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="added tests for author's favouriteGenre">
+    <list default="true" id="e7178724-5d71-4968-ba94-00ae1e1c8a1e" name="Changes" comment="Added &quot;private&quot; access modifier to List&lt;Book&gt; books field. Changed name of AuthorSessionFactory to LibrarySessionFactory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/cebix/LibraryDAOTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,46 +48,61 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build module07.executor": "Run",
-    "Gradle.LibraryDAOTest.executor": "Run",
-    "Gradle.LibraryDAOTest.testAddAuthor.executor": "Run",
-    "Gradle.LibraryDAOTest.testAddAuthorIfAuthorIsNull.executor": "Run",
-    "Gradle.LibraryDAOTest.testAddAuthorWithAgeAsNull.executor": "Run",
-    "Gradle.LibraryDAOTest.testAddAuthorWithIncorrectName.executor": "Debug",
-    "Gradle.LibraryDAOTest.testAddAuthorWithMinusAge.executor": "Run",
-    "Gradle.TestAddAuthor.executor": "Run",
-    "Gradle.TestAddAuthor.testAddAuthorWithEmptyGenre.executor": "Run",
-    "Gradle.TestAddAuthor.testAddAuthorWithNullAsGenre.executor": "Run",
-    "Gradle.TestAddBookToAuthor.executor": "Run",
-    "Gradle.TestAddBookToAuthor.testIfBookIsNull.executor": "Run",
-    "Gradle.TestAddBookToAuthor.testIfBooksTitleIsEmpty.executor": "Run",
-    "Gradle.TestAddBookToAuthor.testIfBooksTitleIsNull.executor": "Run",
-    "Gradle.TestAddBookToAuthor.testWhenAuthorIsNotExist.executor": "Run",
-    "Gradle.TestAddBookToAuthor.testWithAuthorAsNull.executor": "Run",
-    "Gradle.TestAddBookToAuthor.testWithValidData.executor": "Run",
-    "Gradle.TestAddBookToAuthor.withValidData.executor": "Run",
-    "Gradle.TestUpdateAuthor.testIfNewAuthorHasValidData.executor": "Run",
-    "Gradle.TestUpdateAuthor.testIfNewAuthorIsNull.executor": "Run",
-    "Gradle.TestUpdateBookNumberOfPages.executor": "Run",
-    "Gradle.TestUpdateBookNumberOfPages.testWithValidData.executor": "Run",
-    "Gradle.TestUpdateBooksGenre.executor": "Run",
-    "Gradle.TestUpdateBooksTitle.executor": "Run",
-    "Gradle.module07 [:Main.main()].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build module07.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LibraryDAOTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LibraryDAOTest.testAddAuthor.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LibraryDAOTest.testAddAuthorIfAuthorIsNull.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LibraryDAOTest.testAddAuthorWithAgeAsNull.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LibraryDAOTest.testAddAuthorWithIncorrectName.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.LibraryDAOTest.testAddAuthorWithMinusAge.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddAuthor.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddAuthor.testAddAuthorWithEmptyGenre.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddAuthor.testAddAuthorWithNullAsGenre.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddBookToAuthor.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddBookToAuthor.testIfBookIsNull.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddBookToAuthor.testIfBooksTitleIsEmpty.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddBookToAuthor.testIfBooksTitleIsNull.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddBookToAuthor.testWhenAuthorIsNotExist.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddBookToAuthor.testWhenAuthorWasNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddBookToAuthor.testWithAuthorAsNull.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddBookToAuthor.testWithValidData.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestAddBookToAuthor.withValidData.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestDeleteAuthor.testWhenAuthorNameWasNull.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestDeleteAuthor.testWhenAuthorWasNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestDeleteBook.testIfBookHasValidData.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestDeleteBook.testWhenBookWasNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateAuthor.testIfNewAuthorHasValidData.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateAuthor.testIfNewAuthorIsNull.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateAuthorAge.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateAuthorFavouriteGenre.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateAuthorName.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateAuthorName.testIfNewAuthorNameHasValidData.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateAuthorName.testWhenAuthorWasNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateBookAuthor.testIfNewAuthorIsNull.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateBookAuthor.testWhenBookWasNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateBookGenre.testWhenBookWasNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateBookNumberOfPages.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateBookNumberOfPages.testWhenBookWasNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateBookNumberOfPages.testWithValidData.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateBookTitle.testWhenBookWasNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateBooksGenre.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestUpdateBooksTitle.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.module07 [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Gradle.LibraryDAOTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pl.cebix.Main" />
@@ -125,7 +141,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="TestAddAuthor.testAddAuthorWithEmptyGenre" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestDeleteAuthor.testWhenAuthorNameWasNull" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -138,7 +154,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddAuthor.testAddAuthorWithEmptyGenre&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestDeleteAuthor.testWhenAuthorNameWasNull&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -149,7 +165,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="TestAddAuthor.testAddAuthorWithNullAsGenre" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestDeleteAuthor.testWhenAuthorWasNotFound" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -162,7 +178,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddAuthor.testAddAuthorWithNullAsGenre&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestDeleteAuthor.testWhenAuthorWasNotFound&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -173,7 +189,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="TestAddBookToAuthor.testWhenAuthorIsNotExist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestUpdateAuthorName.testWhenAuthorWasNotFound" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -186,7 +202,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.cebix.LibraryDAOTest$TestAddBookToAuthor.testWhenAuthorIsNotExist&quot;" />
+            <option value="&quot;pl.cebix.LibraryDAOTest$TestUpdateAuthorName.testWhenAuthorWasNotFound&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -200,9 +216,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.LibraryDAOTest" />
-        <item itemvalue="Gradle.TestAddAuthor.testAddAuthorWithEmptyGenre" />
-        <item itemvalue="Gradle.TestAddAuthor.testAddAuthorWithNullAsGenre" />
-        <item itemvalue="Gradle.TestAddBookToAuthor.testWhenAuthorIsNotExist" />
+        <item itemvalue="Gradle.TestUpdateAuthorName.testWhenAuthorWasNotFound" />
+        <item itemvalue="Gradle.TestDeleteAuthor.testWhenAuthorNameWasNull" />
+        <item itemvalue="Gradle.TestDeleteAuthor.testWhenAuthorWasNotFound" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -242,6 +258,8 @@
       <workItem from="1711921133910" duration="600000" />
       <workItem from="1711967096571" duration="2074000" />
       <workItem from="1712005816002" duration="5235000" />
+      <workItem from="1712057894428" duration="11186000" />
+      <workItem from="1712167987310" duration="5980000" />
     </task>
     <task id="LOCAL-00001" summary="added new methods to LibraryDAO, small update in toString methods in Author and Book classes">
       <option name="closed" value="true" />
@@ -387,7 +405,39 @@
       <option name="project" value="LOCAL" />
       <updated>1712012333089</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="simplified addBookToAuthor, update, delete methods (information about author or book was not found now is taken from findAuthorByName or findBookByTitle methods)">
+      <option name="closed" value="true" />
+      <created>1712065088573</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1712065088573</updated>
+    </task>
+    <task id="LOCAL-00020" summary="update deleteAuthor and deleteBook methods to handle NoResultException">
+      <option name="closed" value="true" />
+      <created>1712075316325</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1712075316325</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added tests for the deleteBook, deleteAuthor and methods responsible for updating author fields">
+      <option name="closed" value="true" />
+      <created>1712075562532</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1712075562532</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added &quot;private&quot; access modifier to List&lt;Book&gt; books field. Changed name of AuthorSessionFactory to LibrarySessionFactory">
+      <option name="closed" value="true" />
+      <created>1712171161120</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1712171161120</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,20 +462,13 @@
     <MESSAGE value="updated methods in case the book or author cannot be found by the findAuthorByName and findBookByTitle methods" />
     <MESSAGE value="added validation for author's empty favouriteGenre" />
     <MESSAGE value="added tests for author's favouriteGenre" />
-    <option name="LAST_COMMIT_MESSAGE" value="added tests for author's favouriteGenre" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/cebix/Main.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="simplified addBookToAuthor, update, delete methods (information about author or book was not found now is taken from findAuthorByName or findBookByTitle methods)" />
+    <MESSAGE value="update deleteAuthor and deleteBook methods to handle NoResultException" />
+    <MESSAGE value="Added tests for the deleteBook, deleteAuthor and methods responsible for updating author fields" />
+    <MESSAGE value="Added &quot;private&quot; access modifier to List&lt;Book&gt; books field. Changed name of AuthorSessionFactory to LibrarySessionFactory" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added &quot;private&quot; access modifier to List&lt;Book&gt; books field. Changed name of AuthorSessionFactory to LibrarySessionFactory" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/module07$LibraryDAOTest.ic" NAME="LibraryDAOTest Coverage Results" MODIFIED="1711583077327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/module07$LibraryDAOTest.ic" NAME="LibraryDAOTest Coverage Results" MODIFIED="1712074850838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
