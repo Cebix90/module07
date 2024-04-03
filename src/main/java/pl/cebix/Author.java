@@ -16,7 +16,7 @@ public class Author {
     private Integer age;
     private String favouriteGenre;
     @OneToMany(mappedBy = "author")
-    List<Book> books;
+    private List<Book> books;
 
     public Author() {
     }

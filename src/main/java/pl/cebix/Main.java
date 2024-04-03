@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        SessionFactory sessionFactory = AuthorSessionFactory.getAuthorSessionFactory();
+        SessionFactory sessionFactory = LibrarySessionFactory.getAuthorSessionFactory();
         LibraryDAO dao = new LibraryDAO(sessionFactory);
 
         Author author = new Author();
